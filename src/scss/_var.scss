@@ -1,0 +1,15 @@
+@mixin font($name, $weight) {
+
+    // миксин для шрифтов:
+    @font-face {
+        font: {
+            family: $name; // свойство font-family
+            weight: $weight; // свойство font-weight
+            display: swap; // свойство font-swap
+        }
+
+        src: url("../fonts/#{ $name } - #{ $weight }.woff2") format("woff2"),
+        // ex: Roboto-500
+        url("../fonts/#{ $name } - #{ $weight }.woff") format("woff");
+    }
+}

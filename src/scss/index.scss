@@ -1,0 +1,10 @@
+@import 'var'; //  импорт _var.scss
+
+@include font(Roboto, 400); // вызов миксина
+@include font(Roboto, 500);
+@include font(Roboto, 700);
+
+
+body {
+    font-family: Roboto, sans-serif;
+}

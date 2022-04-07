@@ -1,4 +1,5 @@
 // пакеты берем отсюда https://www.npmjs.com/package/package
+// чтобы в ком строке запускать через gulp, то надо утсанвоить глобальное gulp: npm i gulp-cli -g 
 // gulp
 
 import gulp from 'gulp';
@@ -219,7 +220,7 @@ export const server = () => { //
 };
 
 
-const clear = () => del(path.dist.base, { //  каждый раз когда собираем проект, очищаем папку dist, эту функицю запускаем в build  
+export const clear = () => del(path.dist.base, { //  каждый раз когда собираем проект, очищаем папку dist, эту функицю запускаем в build  
     force: true,
 });
 

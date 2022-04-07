@@ -1,17 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Big Bithers</title>
     <link rel="stylesheet" href="css/index.min.css">
     <script src="js/index.min.js"></script>
 </head>
 
 <body>
-    Привет мир!nkljkjlkjlkj
+    <section class="library">
+        <!--глаавная стрница-->
+        <header class="header library__header">
+            <div class="container">
+                <img src="img/library_logo.svg" alt="logo">
+                <!--путь от dist/img-->
+
+                <button class="header__btn-add">Добавить книгу</button>
+
+                <button class="header__btn header__btn-search">поиск</button>
+            </div>
+        </header>
+
+        <div class="container library__titles">
+            <h1 class="library__title">Моя библиотека</h1>
+            <p class="library__count">3 книги</p>
+            <div class="library__fields fields">
+                <div class="fields__block">
+                    <button class="fields__button fields__button-sort">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 18H9V16H3V18ZM3 6V8H21V6H3ZM3 13H15V11H3V13Z" fill="white" />
+                        </svg>
+                        <span class="fields__text">По рейтингу</span>
+                    </button>
+
+                    <ul class="fields__list fields__list-sort">
+                        <li class="fields__item">
+                            <button class="fields__button">От меньшего</button>
+                        </li>
+                        <li class="fields__item">
+                            <button class="fields__button">От большего</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="fields__block">
+                    <button class="fields__button fields__button-filter">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4.24999 5.61C6.26999 8.2 9.99999 13 9.99999 13V19C9.99999 19.55 10.45 20 11 20H13C13.55 20 14 19.55 14 19V13C14 13 17.72 8.2 19.74 5.61C20.25 4.95 19.78 4 18.95 4H5.03999C4.20999 4 3.73999 4.95 4.24999 5.61Z"
+                                fill="white" />
+                        </svg>
+                        <span class="fields__text">Фильтр</span>
+                    </button>
+
+                    <ul class="fields__list fields__list-filter">
+                        <li class="fields__item">
+                            <button class="fields__button">Хочу почитать</button>
+                        </li>
+                        <li class="fields__item">
+                            <button class="fields__button">Прочитал</button>
+                        </li>
+                        <li class="fields__item">
+                            <button class="fields__button">Читаю</button>
+                        </li>
+                        <li class="fields__item">
+                            <button class="fields__button">Не дочитал</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container library__list-container">
+            <h2 class="visually-hidden">Список книг</h2>
+            <!--этот заголовок будут видеть только роботы-->
+            <ul class="library__list">
+                <li class="library_item">
+                    <a href="/book">
+                        <article class="cart">
+                            <div class="cart__picture">
+                                <img class="cart__image" src="img/book.jpg" alt="Облжка книги ...">
+                                <p class="cart__label">Хочу прочитать</p>
+                            </div>
+
+                            <div class="cart__content">
+                                <h3 class="cart__title">1984</h3>
+                                <p class="cart__author">Джорж Оруэлл</p>
+                                <p class="cart__description">Главный герой — Уинстон Смит — живёт в Лондоне, работает в
+                                    Министерстве правды и является...</p>
+                                <div class="cart__rating">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="Рейтинг 4 из 5">
+                                    <!--значнеи alt прочитают роботы-->
+                                    <!--картинка из dist/img-->
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star_white.svg" alt="">
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </li>
+
+                <li class="library_item">
+                    <a href="/book">
+                        <article class="cart">
+                            <div class="cart__picture">
+                                <img class="cart__image" src="img/book.jpg" alt="Облжка книги ...">
+                                <p class="cart__label">Хочу прочитать</p>
+                            </div>
+
+                            <div class="cart__content">
+                                <h3 class="cart__title">1984</h3>
+                                <p class="cart__author">Джорж Оруэлл</p>
+                                <p class="cart__description">Главный герой — Уинстон Смит — живёт в Лондоне, работает в
+                                    Министерстве правды и является...</p>
+                                <div class="cart__rating">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="Рейтинг 4 из 5">
+                                    <!--значнеи alt прочитают роботы-->
+                                    <!--картинка из dist/img-->
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star_white.svg" alt="">
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </li>
+
+                <li class="library_item">
+                    <a href="/book">
+                        <article class="cart">
+                            <div class="cart__picture">
+                                <img class="cart__image" src="img/book.jpg" alt="Облжка книги ...">
+                                <p class="cart__label">Хочу прочитать</p>
+                            </div>
+
+                            <div class="cart__content">
+                                <h3 class="cart__title">1984</h3>
+                                <p class="cart__author">Джорж Оруэлл</p>
+                                <p class="cart__description">Главный герой — Уинстон Смит — живёт в Лондоне, работает в
+                                    Министерстве правды и является...</p>
+                                <div class="cart__rating">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="Рейтинг 4 из 5">
+                                    <!--значнеи alt прочитают роботы-->
+                                    <!--картинка из dist/img-->
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star.svg" alt="">
+                                    <img class="cart__rating-star" src="img/Star_white.svg" alt="">
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+
+    <section class="book">
+        <!-- страница с книгой-->
+
+    </section>
+
+
+    <section class="add">
+        <!-- страница с формой-->
+
+    </section>
 </body>
 
 </html>
+
+<!-- 
+https://www.youtube.com/watch?v=IcT4LvpGq1k -->

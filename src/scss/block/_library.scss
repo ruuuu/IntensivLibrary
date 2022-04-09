@@ -1,0 +1,43 @@
+.library {
+
+    &__header {
+        margin-bottom: 15px;
+    }
+
+    &__titles {
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        margin-bottom: 8px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    &__count {
+        margin-bottom: 25px;
+        font-size: 14px;
+        line-height: 120%;
+        color: #EAEAEA;
+    }
+
+    &__fields {
+        display: flex;
+    }
+
+    &__list-container {}
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap; // если элементы не вмещаются, то они  перенесутся на след строку
+        gap: 15px 26px; // расстняие между элементами, по бокам  26
+    }
+
+
+    &__item {}
+
+    &__add-btn {}
+
+}

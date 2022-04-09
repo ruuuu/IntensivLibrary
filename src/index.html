@@ -12,21 +12,23 @@
 
 <body>
     <section class="library">
-        <!--глаавная стрница-->
+        <!--главная стрница-->
         <header class="header library__header">
-            <div class="container">
-                <img src="img/library_logo.svg" alt="logo">
+            <div class="container header__container">
+                <img class="header__logo" src="img/library_logo.svg" width="60" height="40" alt="logo">
                 <!--путь от dist/img-->
 
                 <button class="header__btn-add">Добавить книгу</button>
 
-                <button class="header__btn header__btn-search">поиск</button>
+                <button class="header__btn header__btn--search" aria-label="Найти книгу"></button>
+                <!--когда пользак нажмут на кнопку, выскочет поле поиска-->
             </div>
         </header>
 
         <div class="container library__titles">
             <h1 class="library__title">Моя библиотека</h1>
             <p class="library__count">3 книги</p>
+
             <div class="library__fields fields">
                 <div class="fields__block">
                     <button class="fields__button fields__button-sort" aria-label>
@@ -71,14 +73,12 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
-
         </div>
 
         <div class="container library__list-container">
             <h2 class="visually-hidden">Список книг</h2>
-            <!--этот заголовок будут видеть только роботы-->
+            <!--скрытый загловок для роботов и программ читалок-->
             <ul class="library__list">
                 <li class="library__item">
                     <a href="/book">
@@ -164,16 +164,16 @@
         </div>
 
         <footer class="footer">
-            <button class="footer__btn library__add-btn" aria-label="Добавить книгу"></button>
-            <!--если  у кнопки нет текста, то добавляем  атрибут aria-label с текстом -->
+            <button class="footer__btn library__add-btn" aria-label="Добавить книгу">fgdfgdfg</button>
+            <!--если у кнопки нет текста, то добавляем  атрибут aria-label с текстом -->
         </footer>
     </section>
 
 
-    <section class="book">
+    <section class="book hide">
         <!-- страница с книгой-->
         <header class="header book__header">
-            <div class="container">
+            <div class="container header__container">
                 <button class="header__btn header__btn--back">Назад</button>
                 <button class="header__btn header__btn--delete">Удалить</button>
             </div>
@@ -219,10 +219,12 @@
     </section>
 
 
-    <section class="add">
+    <section class="add hide">
         <!--страница с формой-->
+        <h2 class="visually-hidden">Страница с формой</h2>
+        <!--скрытый загловок для роботов и программ читалок-->
         <header class="header add__header">
-            <div class="container">
+            <div class="container header__container">
                 <button class="header__btn header__btn--back">Назад</button>
                 <button class="header__btn header__btn--search">Поиск</button>
             </div>

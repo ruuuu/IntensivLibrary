@@ -1,10 +1,9 @@
+@import 'normalize'; //  собрали три файла из папки normalize в один файл _normalize.scss и импортируем его
+@include normalize();
 @import 'var'; //  импорт _var.scss
+@import 'font';
+@import 'default'; // дефолтные стили
 
-@include font(Roboto, 400); // вызов миксина
-@include font(Roboto, 500);
-@include font(Roboto, 700);
-
-
-body {
-    font-family: Roboto, sans-serif;
-}
+@import 'block/header'; // импортирем файл block/header.scss
+@import 'block/library'; // импортирем файл block/library.scss
+@import 'block/footer';

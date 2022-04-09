@@ -1,0 +1,4 @@
+// у файла в названии ставим нижнеее подчеркиванеи, чтобы галп их не отслеживал, он будет рабоать только с index.scss
+@import "normalize/variables"; // импорт файла normalize/_variables.scss
+@import "normalize/vertical-rhythm";
+@import "normalize/normalize-mixin";

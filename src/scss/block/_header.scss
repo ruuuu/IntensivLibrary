@@ -1,0 +1,36 @@
+.header {
+    // блок .header, block__element--modificator
+
+    padding: 8px 0;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        height: 40px; //если размер лого изменитмся то юлок скакать не будет
+    }
+
+    &__btn-add {
+        display: none;
+    }
+
+    &__btn {
+        width: 40px;
+        height: 40px;
+        background-size: 24px;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-position: center right;
+        border: 0;
+    }
+
+    &__btn--search {
+
+        background-image: url("../img/Search.svg");
+    }
+
+
+}

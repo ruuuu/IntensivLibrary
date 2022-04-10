@@ -27,7 +27,12 @@
         display: flex;
     }
 
-    &__list-container {}
+    &__list-container {
+
+        @media(max-width: 375px) {
+            padding: 0 12px;
+        }
+    }
 
     &__list {
         display: flex;
@@ -38,6 +43,12 @@
 
     &__item {}
 
-    &__add-btn {}
+    &__add-btn {
+        width: 44px;
+        height: 44px;
+        color: $primary;
+        background-color: transparent;
+        border: 0;
+    }
 
 }

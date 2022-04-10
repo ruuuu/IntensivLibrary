@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Bithers</title>
     <link rel="stylesheet" href="css/index.min.css">
-    <script src="js/index.min.js"></script>
+    <script src="js/index.min.js" defer></script>
 </head>
 
 <body>
@@ -81,7 +81,7 @@
             <!--скрытый загловок для роботов и программ читалок-->
             <ul class="library__list">
                 <li class="library__item">
-                    <a href="/book">
+                    <a href="/book" data-navigo>
                         <article class="cart">
                             <div class="cart__wrapper">
                                 <img class="cart__image" src="img/book.jpg" alt="Облжка книги ...">
@@ -108,11 +108,11 @@
                 </li>
 
                 <li class="library__item">
-                    <a href="/book">
+                    <a href="/book" data-navigo>
                         <article class="cart">
                             <div class="cart__wrapper">
-                                <img class="cart__image" src="img/book.jpg" alt="Облжка книги ...">
-                                <p class="cart__label">Хочу прочитать</p>
+                                <img class="cart__image" src="img/book2.jpg" alt="Облжка книги ...">
+                                <p class="cart__label">Прочитал</p>
                             </div>
 
                             <div class="cart__content">
@@ -135,7 +135,7 @@
                 </li>
 
                 <li class="library__item">
-                    <a href="/book">
+                    <a href="/book" data-navigo>
                         <article class="cart">
                             <div class="cart__wrapper">
                                 <img class="cart__image" src="img/book.jpg" alt="Облжка книги ...">
@@ -164,7 +164,39 @@
         </div>
 
         <footer class="footer">
-            <button class="footer__btn library__add-btn" aria-label="Добавить книгу">fgdfgdfg</button>
+            <button class="footer__btn library__add-btn" aria-label="Добавить книгу">
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_dd_37_301)">
+                        <circle cx="26" cy="22" r="22" fill="#F87C09" />
+                        <rect x="25.34" y="9.01993" width="0.44" height="25.96" fill="#242424" stroke="white"
+                            stroke-width="0.44" />
+                        <rect x="13.02" y="21.7799" width="0.44" height="25.96" transform="rotate(-90 13.02 21.7799)"
+                            fill="#242424" stroke="white" stroke-width="0.44" />
+                    </g>
+                    <defs>
+                        <filter id="filter0_dd_37_301" x="0" y="0" width="52" height="52" filterUnits="userSpaceOnUse"
+                            color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset dy="4" />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_37_301" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset dy="4" />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                            <feBlend mode="normal" in2="effect1_dropShadow_37_301" result="effect2_dropShadow_37_301" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_37_301" result="shape" />
+                        </filter>
+                    </defs>
+                </svg>
+
+            </button>
             <!--если у кнопки нет текста, то добавляем  атрибут aria-label с текстом -->
         </footer>
     </section>

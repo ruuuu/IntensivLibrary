@@ -1,0 +1,84 @@
+.book {
+
+
+    min-width: 320px; // ширина контента
+    padding-left: 20px;
+    padding-right: 20px;
+
+
+    &__ccontainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    &__img {
+        display: block;
+        width: 168px;
+        height: 250px;
+    }
+
+    &__label {
+        display: none;
+    }
+
+
+    &__title {
+        margin-bottom: 4px;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    &__author {
+        margin-bottom: 15px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 120%;
+        color: $secondary;
+    }
+
+    &__rating {
+        display: flex;
+        margin-bottom: 15px;
+    }
+
+    &__rating-star {
+        width: 36px;
+        height: 36px;
+    }
+
+    &__subtitle {
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 130%;
+    }
+
+    &__description {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 130%;
+    }
+
+
+    &__label-footer {
+        display: block;
+        padding: 18px 103px;
+        border-radius: 30px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 100%;
+    }
+
+
+}

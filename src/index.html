@@ -195,19 +195,28 @@
                         </filter>
                     </defs>
                 </svg>
-
             </button>
             <!--если у кнопки нет текста, то добавляем  атрибут aria-label с текстом -->
         </footer>
     </section>
 
 
-    <section class="book hide">
+    <section class="book">
         <!-- страница с книгой-->
         <header class="header book__header">
-            <div class="container header__container">
-                <button class="header__btn header__btn--back">Назад</button>
-                <button class="header__btn header__btn--delete">Удалить</button>
+            <div class="container header__container book__ccontainer">
+                <button class="header__btn header__btn--back">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white" />
+                    </svg>
+                </button>
+                <button class="header__btn header__btn--delete">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"
+                            fill="#EAEAEA" />
+                    </svg>
+                </button>
             </div>
         </header>
 
@@ -219,7 +228,7 @@
 
             <div class="book__content">
                 <h2 class="book__title">1984</h2>
-                <p class="book__author">Гарри Поттер и Философский камень</p>
+                <p class="book__author">Джордж Оруэлл</p>
                 <div class="book__rating">
                     <img class="book__rating-star" src="img/Star.svg" alt="Рейтинг 4 из 5">
                     <!--значнеи alt прочитают роботы-->
@@ -246,9 +255,10 @@
         </div>
 
         <footer class="footer">
-            <button class="footer__btn book__label">Хочу прочитать</button>
+            <button class="footer__btn book__label book__label-footer">Хочу прочитать</button>
         </footer>
     </section>
+
 
 
     <section class="add hide">

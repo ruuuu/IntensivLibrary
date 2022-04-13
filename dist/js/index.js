@@ -53,6 +53,10 @@ var addBtns = document.querySelectorAll('.header__btn-add, .library__add-btn'); 
 
 var backBtns = document.querySelectorAll('.header__btn--back'); // кнопки Назад
 
+var btnSearchs = document.querySelectorAll('.header__btn--search'); // кнпоки поиска в header
+
+var search = document.querySelector('.search'); // блок с поиском
+
 var router = new navigo__WEBPACK_IMPORTED_MODULE_0__('/', {
   // созадем объект роутера
   hash: true
@@ -65,26 +69,31 @@ var closeAllPage = function closeAllPage() {
   _book.classList.add('hide');
 
   _add.classList.add('hide');
-};
+}; // роутинг: напишем обработчики котрые будут запускаться в зависимости от адресной строки
+
 
 router.on({
   '/': function _() {
     closeAllPage();
     library.classList.remove('hide');
+    search.classList.remove('search__active');
   },
   'book': function book() {
     // если в адресной строке будет наисано book, то вызовется эта фукния
     closeAllPage();
 
     _book.classList.remove('hide');
+
+    search.classList.remove('search__active');
   },
   'add': function add() {
     closeAllPage();
 
     _add.classList.remove('hide');
-  }
-}).resolve(); //напишем обработчики котрые будут запускаться в зависимости от адресной строки
 
+    search.classList.remove('search__active');
+  }
+}).resolve();
 addBtns.forEach(function (btn) {
   btn.addEventListener('click', function () {
     router.navigate('add'); // переходи на cекцию add(форма)
@@ -93,6 +102,28 @@ addBtns.forEach(function (btn) {
 backBtns.forEach(function (backBtn) {
   backBtn.addEventListener('click', function () {
     router.navigate('/');
+  });
+}); // закрытие поля писка:
+
+var closeSearch = function closeSearch(evt) {
+  // нажатие на блок .search
+  // evt.target-  элемент на котором произошел клик
+  if (evt.target.closest('.search, .header__btn--search')) {
+    // если у target(нажатый эл-ент) или его родителя есть классы .search или .header__btn--search
+    return; // блок .search закрываться  не будет
+  }
+
+  search.classList.remove('search__active'); // btnSearchs[0].classList.remove('hide');
+  // btnSearchs[1].classList.remove('hide');
+
+  document.body.removeEventListener('click', closeSearch); // удаляем событие 
+};
+
+btnSearchs.forEach(function (btnSearch) {
+  btnSearch.addEventListener('click', function () {
+    search.classList.add('search__active');
+    document.body.addEventListener('click', closeSearch); // при клике на body, закрываем блок поиска(.search)
+    // btnSearch.classList.add('hide');
   });
 });
 })();

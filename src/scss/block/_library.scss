@@ -1,4 +1,22 @@
 .library {
+    padding-bottom: 80px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        left: -66px;
+        top: -63px;
+        width: 174px;
+        height: 174px;
+        background-color: #FF0000;
+        filter: blur(120px);
+        z-index: 1;
+
+        @include tablet {
+            content: none;
+        }
+    }
 
     &__header {
         margin-bottom: 15px;
@@ -38,10 +56,19 @@
         display: flex;
         flex-wrap: wrap; // если элементы не вмещаются, то они  перенесутся на след строку
         gap: 15px 26px; // расстняие между элементами, по бокам  26
+        max-width: 780px; // чтоб краточик не выпали из этого блока
     }
 
 
     &__item {}
+
+
+
+    &__footer {
+        @include tablet {
+            display: none;
+        }
+    }
 
     &__add-btn {
         width: 44px;

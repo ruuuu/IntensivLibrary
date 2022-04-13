@@ -1,9 +1,31 @@
 .book {
 
-
     min-width: 320px; // ширина контента
     padding-left: 20px;
     padding-right: 20px;
+
+    @include tablet {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    @include laptop {
+        // display: flex;
+        // flex-direction: column;
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+
+    @include desktop {
+        padding-left: 110px;
+        padding-right: 110px;
+    }
+
+
+
+    &__header {
+        margin-bottom: 10px;
+    }
 
 
     &__ccontainer {
@@ -14,10 +36,30 @@
         padding-right: 0;
     }
 
+
     &__container {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @include laptop {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+    }
+
+
+    &__wrapper {
+
+        width: 168px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+
+        @include laptop {
+            width: 249px;
+            // flex-shrink: 0; // чтоб картинка не сжималась
+            margin-right: 50px;
+        }
     }
 
 
@@ -25,10 +67,51 @@
         display: block;
         width: 168px;
         height: 250px;
+        border-radius: 6px;
+
+        @include tablet {
+            width: 300px;
+            height: 450px;
+            object-fit: contain;
+        }
+
+        @include laptop {
+            width: 249px;
+            height: 371px;
+            flex-shrink: 0; // чтоб картинка не сжималась
+
+            margin-bottom: 20px;
+        }
     }
+
 
     &__label {
         display: none;
+
+        @include laptop {
+            display: block;
+            width: 100%;
+            padding: 18px 20px;
+            border-radius: 30px;
+            background-color: $white;
+            border: 0;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 100%;
+        }
+    }
+
+
+    &__content {
+        color: $white;
+
+        @include laptop {
+            width: 580px;
+        }
+
+        @include desktop {
+            width: 671px;
+        }
     }
 
 
@@ -37,7 +120,14 @@
         font-weight: 700;
         font-size: 26px;
         line-height: 32px;
+
+        @include laptop {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 49px;
+        }
     }
+
 
     &__author {
         margin-bottom: 15px;
@@ -45,12 +135,21 @@
         font-size: 14px;
         line-height: 120%;
         color: $secondary;
+
+        @include laptop {
+            color: $secondary;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 120%;
+        }
     }
+
 
     &__rating {
         display: flex;
         margin-bottom: 15px;
     }
+
 
     &__rating-star {
         width: 36px;
@@ -62,22 +161,56 @@
         font-weight: 500;
         font-size: 12px;
         line-height: 130%;
+
+        @include laptop {
+            font-size: 14px;
+        }
     }
+
 
     &__description {
         font-weight: 400;
         font-size: 12px;
         line-height: 130%;
+
+        @include laptop {
+            color: $white;
+            font-size: 14px;
+        }
+    }
+
+
+    &__footer {
+        width: 320px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        @media (max-height: 500px) {
+            width: 320px;
+            left: 0;
+        }
+
+
     }
 
 
     &__label-footer {
         display: block;
+        width: 100%;
+        max-width: 320px;
         padding: 18px 103px;
         border-radius: 30px;
         font-weight: 500;
         font-size: 14px;
         line-height: 100%;
+
+
+        @include laptop {
+            display: none;
+            padding-bottom: 93px;
+        }
     }
 
 

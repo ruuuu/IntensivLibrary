@@ -1,0 +1,122 @@
+.fields {
+    display: flex;
+    justify-content: space-between;
+
+
+    &__block {
+        position: relative; // меню будем позициониротваь относиельно этго элемента
+        z-index: 3; // чоб карточка была ниже, а меню будет выше(перекрыать)
+
+        @include laptop {
+            max-width: 142px;
+            width: 100%;
+        }
+
+
+    }
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        gap: 4px; //расстяние между флекс элементами
+        height: 24px;
+        background-color: transparent;
+        color: $white;
+        border: 0;
+        transition: color .36s ease-in-out; // чтоб цвет при наведении плавно  менялся
+
+        &:hover {
+            // при наведении
+            color: $primary;
+        }
+
+
+
+    }
+
+
+    &__button-sort {}
+
+    &__text {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 130%;
+
+        @include laptop {
+            font-size: 14px;
+            line-height: 130%;
+        }
+    }
+
+
+    &__list {
+        // выпадающее меню
+        display: none;
+        position: absolute;
+        top: calc(100% + 3px);
+        min-width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: $white;
+        color: $black;
+        white-space: nowrap; // чтоб тектс не переносился  либо так width: max-content
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+
+        @include laptop {
+            top: calc(100% + 20px);
+
+        }
+
+        &--active {
+            display: block;
+        }
+
+        &-sort {
+            left: 0;
+
+            @media(max-width: 375px) {
+                left: -8px;
+            }
+        }
+
+
+        &-filter {
+            right: 0;
+
+            @media(max-width: 375px) {
+                right: -8px;
+            }
+
+            @include laptop {
+                display: block;
+
+            }
+        }
+
+
+
+    }
+
+    &__list-sort {}
+
+    &__item {
+        margin-bottom: 15px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+
+    &__list-filter {}
+
+
+    &__button {
+        background-color: $secondary;
+        border-radius: 16px;
+        border: 0;
+        padding: 8px;
+        font-size: 12px;
+        line-height: 100%;
+    }
+}

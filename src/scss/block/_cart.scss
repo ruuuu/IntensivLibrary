@@ -1,14 +1,19 @@
 .cart {
 
-    min-width: 336px; // ширина контента
+    max-width: 336px; // ширина контента карточки
     display: flex;
     gap: 10px; // distation between carts
-
     background-color: $white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     color: $black;
     padding: 8px 8px 10px 8px;
+
+    @include laptop {
+        max-width: 377px;
+    }
+
+
 
     &__wrapper {
         // флекс элемент

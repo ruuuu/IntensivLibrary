@@ -1,14 +1,37 @@
 .footer {
     position: fixed; // зафикисруем подвал
     bottom: 0; // прижимаем подвалк  низу
-    left: 0;
+    right: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
     width: 100%;
     height: 74px;
-    background-color: $black;
+    background-color: transparent; // $black
 
     &__btn {}
+
+    @media(max-height: 500px) {
+        width: auto;
+        padding: 20px;
+        background-color: transparent;
+        right: 0;
+    }
+
+    @include tablet {
+        left: 0;
+
+    }
+
+    // @include tablet {
+    //     width: 320px;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    // }
+
+
+
 }

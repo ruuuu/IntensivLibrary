@@ -91,8 +91,8 @@ export const scss = () => gulp // task scss
     .pipe(gulpif(!dev, autoprefixer(({ // если это прод, то 
         cascade: false,
     }))))
-    .pipe(gulpif(!dev, gcmq())) // если прод
-    .pipe(gulpif(!dev, gulp.dest(path.dist.css))) // чтобы проверить что положилось  в css
+    .pipe(gcmq()) // собирает все медиа-запрос и отправляет их в конец, группирует в том порядке, в котором нужно
+    .pipe(gulpif(!dev, gulp.dest(path.dist.css))) // если прод, то чтобы проверить что положилось  в css
     .pipe(gulpif(!dev, cleanCSS({ // сжимаем(минимизируем)
         2: {
             specialComments: 0,

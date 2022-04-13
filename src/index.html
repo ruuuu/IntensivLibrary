@@ -15,7 +15,7 @@
         <!--главная стрница-->
         <header class="header library__header">
             <div class="container header__container">
-                <img class="header__logo" src="img/library_logo.svg" width="60" height="40" alt="logo">
+                <img class="header__logo" src="img/library_logo.svg" alt="logo">
                 <!--путь от dist/img-->
 
                 <button class="header__btn-add">Добавить книгу</button>
@@ -31,9 +31,10 @@
 
             <div class="library__fields fields">
                 <div class="fields__block">
-                    <button class="fields__button fields__button-sort" aria-label>
+                    <button class="fields__btn fields__button-sort" aria-label>
+                        <!--fill="currentColor" заберет цвет у свойства color-->
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 18H9V16H3V18ZM3 6V8H21V6H3ZM3 13H15V11H3V13Z" fill="white" />
+                            <path d="M3 18H9V16H3V18ZM3 6V8H21V6H3ZM3 13H15V11H3V13Z" fill="currentColor" />
                         </svg>
                         <span class="fields__text">По рейтингу</span>
                     </button>
@@ -49,11 +50,11 @@
                 </div>
 
                 <div class="fields__block">
-                    <button class="fields__button fields__button-filter" aria-label>
+                    <button class="fields__btn fields__button-filter" aria-label>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.24999 5.61C6.26999 8.2 9.99999 13 9.99999 13V19C9.99999 19.55 10.45 20 11 20H13C13.55 20 14 19.55 14 19V13C14 13 17.72 8.2 19.74 5.61C20.25 4.95 19.78 4 18.95 4H5.03999C4.20999 4 3.73999 4.95 4.24999 5.61Z"
-                                fill="white" />
+                                fill="currentColor" />
                         </svg>
                         <span class="fields__text">Фильтр</span>
                     </button>
@@ -163,7 +164,7 @@
             </ul>
         </div>
 
-        <footer class="footer">
+        <footer class="footer library__footer">
             <button class="footer__btn library__add-btn" aria-label="Добавить книгу">
                 <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_dd_37_301)">
@@ -205,18 +206,8 @@
         <!-- страница с книгой-->
         <header class="header book__header">
             <div class="container header__container book__ccontainer">
-                <button class="header__btn header__btn--back">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white" />
-                    </svg>
-                </button>
-                <button class="header__btn header__btn--delete">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"
-                            fill="#EAEAEA" />
-                    </svg>
-                </button>
+                <button class="header__btn header__btn--back"></button>
+                <button class="header__btn header__btn--delete"></button>
             </div>
         </header>
 
@@ -254,7 +245,7 @@
             </div>
         </div>
 
-        <footer class="footer">
+        <footer class="footer book__footer">
             <button class="footer__btn book__label book__label-footer">Хочу прочитать</button>
         </footer>
     </section>
@@ -267,8 +258,8 @@
         <!--скрытый загловок для роботов и программ читалок-->
         <header class="header add__header">
             <div class="container header__container">
-                <button class="header__btn header__btn--back">Назад</button>
-                <button class="header__btn header__btn--search">Поиск</button>
+                <button class="header__btn header__btn--back"></button>
+                <button class="header__btn header__btn--search"></button>
             </div>
         </header>
 
@@ -355,6 +346,25 @@
             </form>
         </div>
     </section>
+
+    <div class="search">
+        <!--поле поиска-->
+        <div class="container">
+            <form class="search__form">
+                <label>
+                    <input class="search__input" type="search">
+                </label>
+
+                <button class="search__button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14V14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

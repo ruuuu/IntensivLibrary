@@ -1,7 +1,17 @@
 .header {
-    // блок .header, block__element--modificator
 
+    // блок .header, block__element--modificator
     padding: 8px 0;
+
+    @include tablet {
+        padding: 20px 0 15px;
+    }
+
+    @include laptop {
+        padding: 30px 0 25px;
+    }
+
+
 
     &__container {
         display: flex;
@@ -9,13 +19,33 @@
         align-items: center;
     }
 
+
     &__logo {
         height: 40px; //если размер лого изменитмся то юлок скакать не будет
+        margin-right: auto;
+
+        @include laptop {
+            height: 66px;
+        }
     }
+
 
     &__btn-add {
         display: none;
+
+        @include laptop {
+            display: block;
+            width: 320px;
+            height: 50px;
+            margin-right: 102px;
+            background-color: #F87C09;
+            border-radius: 8px;
+            color: $white;
+            text-align: center;
+            border: 0;
+        }
     }
+
 
     &__btn {
         width: 40px;
@@ -27,10 +57,19 @@
         border: 0;
     }
 
-    &__btn--search {
 
+    &__btn--search {
         background-image: url("../img/Search.svg");
     }
 
+
+    &__btn--back {
+        background-image: url("../img/back.svg");
+    }
+
+
+    &__btn--delete {
+        background-image: url("../img/delete.svg");
+    }
 
 }

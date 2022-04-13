@@ -1,0 +1,63 @@
+.search {
+
+    $height: 40px;
+    $top: 8px;
+    position: absolute;
+    right: 0;
+    top: -$top - $height;
+    width: 100%;
+    transition: transform .5s ease-in-out; // чтобы поле поиcка плавно выезжало сверху за 0.5 s
+
+    @include tablet {
+        top: -40px;
+
+    }
+
+
+
+    &__active {
+        // этот класс будем  подключать к элементу .search в js
+        transform: translateY($top*2 + $height);
+    }
+
+    &__form {
+        position: relative;
+
+    }
+
+    &__input {
+        width: 100%;
+        height: 40px;
+        padding: 3px 10px;
+        background: #FFFFFF;
+        border-radius: 20px;
+        outline: 1px solid transparent;
+        outline-offset: -1px; // чтобы граница отодвинулась от поля
+        border: 0;
+
+        &:focus {
+            outline-color: $secondaryDark;
+        }
+
+
+        @include tablet {
+            max-width: 580px;
+        }
+
+    }
+
+    &__button {
+        position: absolute;
+        top: 50%; // по сереидне
+        right: 15px;
+        width: 24px;
+        height: 24px;
+        transform: translateY(-50%); //чтобы  рсположить по центру
+        background-color: transparent;
+        color: $black;
+        border: 0;
+
+    }
+}
+
+// https://my.methed.ru/teach/control/lesson/view/id/240082260 2:12

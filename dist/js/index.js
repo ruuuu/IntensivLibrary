@@ -57,6 +57,10 @@ var btnSearchs = document.querySelectorAll('.header__btn--search'); // кнпо�
 
 var search = document.querySelector('.search'); // блок с поиском
 
+var fieldsBtnSort = document.querySelector('.fields__button-sort');
+var fieldsListSort = document.querySelector('.fields__list-sort');
+var fieldsBtnFilter = document.querySelector('.fields__button-filter');
+var fieldsListFilter = document.querySelector('.fields__list-filter');
 var router = new navigo__WEBPACK_IMPORTED_MODULE_0__('/', {
   // созадем объект роутера
   hash: true
@@ -77,6 +81,7 @@ router.on({
     closeAllPage();
     library.classList.remove('hide');
     search.classList.remove('search__active');
+    document.body.classList.remove('body__gradient');
   },
   'book': function book() {
     // если в адресной строке будет наисано book, то вызовется эта фукния
@@ -85,6 +90,7 @@ router.on({
     _book.classList.remove('hide');
 
     search.classList.remove('search__active');
+    document.body.classList.add('body__gradient');
   },
   'add': function add() {
     closeAllPage();
@@ -92,6 +98,7 @@ router.on({
     _add.classList.remove('hide');
 
     search.classList.remove('search__active');
+    document.body.classList.add('body__gradient');
   }
 }).resolve();
 addBtns.forEach(function (btn) {
@@ -107,7 +114,7 @@ backBtns.forEach(function (backBtn) {
 
 var closeSearch = function closeSearch(evt) {
   // нажатие на блок .search
-  // evt.target-  элемент на котором произошел клик
+  // evt - объект событи, создается при наустпулении события. evt.target-  элемент на котором произошел клик
   if (evt.target.closest('.search, .header__btn--search')) {
     // если у target(нажатый эл-ент) или его родителя есть классы .search или .header__btn--search
     return; // блок .search закрываться  не будет
@@ -122,10 +129,32 @@ var closeSearch = function closeSearch(evt) {
 btnSearchs.forEach(function (btnSearch) {
   btnSearch.addEventListener('click', function () {
     search.classList.add('search__active');
-    document.body.addEventListener('click', closeSearch); // при клике на body, закрываем блок поиска(.search)
+    document.body.addEventListener('click', closeSearch, true); // скобки у closeSearch не нужвн. При клике на body, закрываем блок поиска(.search)
+    // третий параметр true нужен чтобы при нажатии на карточку, поле поиска закрывалось и получали стрнаицу книги 
     // btnSearch.classList.add('hide');
   });
-});
+}); // const five = document.querySelectorAll('.book__rating-star');
+// five[4].addEventListener('click', ({ target }) => { // 
+//     console.log(target); // выведет элемент на котрый нажали(те элемент на котром произошло событие)
+// });
+
+var controlField = function controlField(btn, list) {
+  btn.addEventListener('click', function () {
+    list.classList.toggle('fields__list--active');
+  });
+  list.addEventListener('click', function (_ref) {
+    var target = _ref.target;
+    console.log('target', target);
+
+    if (target.classList.contains('fields__button')) {
+      // если на;атый элемент имеет класс fields__button 
+      list.classList.remove('fields__list--active');
+    }
+  });
+};
+
+controlField(fieldsBtnSort, fieldsListSort);
+controlField(fieldsBtnFilter, fieldsListFilter);
 })();
 
 /******/ })()

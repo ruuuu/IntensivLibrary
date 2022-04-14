@@ -1,0 +1,60 @@
+.add {
+
+
+    &__header {}
+
+    &__container {
+        @media(max-width: 375px) {
+            padding: 0 12px;
+        }
+    }
+
+    &__form {
+        padding: 14px 0;
+    }
+
+    &__fileldset {}
+
+    &__title {
+        margin-bottom: 8px;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    &__step {
+        margin-bottom: 30px;
+        color: $secondary;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 100%;
+    }
+
+    &__text {
+        width: 100%; // на всю ширину родителя 
+        height: 70px;
+        margin-bottom: 25px;
+        padding: 8px;
+        background-color: $white;
+        border: 1px solid $secondary;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+    &__text--area {
+
+        min-height: 120px;
+        resize: none; // чтобы нельзя было потянуть  текстарию
+    }
+
+
+
+}

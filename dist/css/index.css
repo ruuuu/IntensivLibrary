@@ -559,10 +559,6 @@ body {
   line-height: 1.2;
 }
 
-.body__gradient {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url("../img/fire.svg");
-}
-
 img {
   max-width: 100%;
   height: auto;
@@ -640,6 +636,10 @@ fieldset {
   border: 0;
   margin: 0;
   padding: 0;
+}
+
+.no-valid {
+  outline: 3px solid tomato;
 }
 
 .header {
@@ -1003,11 +1003,37 @@ fieldset {
   padding: 14px 0;
 }
 
+.add__form .footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add__btn {
+  border-radius: 8px;
+  width: 320px;
+  margin: 0 auto;
+  border: 0;
+  color: #FFFFFF;
+  background-color: #F87C09;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+}
+
 .add__title {
   margin-bottom: 8px;
   font-weight: 700;
   font-size: 26px;
   line-height: 32px;
+}
+
+.add__subtitle {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
 }
 
 .add__step {
@@ -1039,18 +1065,114 @@ fieldset {
 
 .add__text--area {
   min-height: 120px;
+  margin-bottom: 80px;
   resize: none;
 }
 
 .upload {
-  max-width: 220px;
+  max-width: 222px;
   margin: 0 auto 15px;
 }
 
 .upload__subtitle {
+  margin-bottom: 15px;
   font-weight: 500;
   font-size: 12px;
   line-height: 100%;
+}
+
+.upload__label {
+  display: block;
+  width: 222px;
+  height: 290px;
+  background-image: url("../img/file.jpg");
+  background-size: cover;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.upload__preview {
+  display: none;
+}
+
+.upload__file {
+  display: none;
+}
+
+.status {
+  margin-bottom: 40px;
+}
+
+.status__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.status__radio {
+  position: absolute;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.status__label {
+  display: inline-block;
+  padding: 8px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border-radius: 16px;
+  outline: 1px solid transparent;
+  transition: background-color 0.5s ease-in-out, outline-color 0.36s ease-in-out;
+}
+
+.status__label:hover {
+  background-color: #EAEAEA;
+}
+
+.status__label:active {
+  background-color: #F87C09;
+}
+
+.status__radio:focus + .status__label {
+  outline-color: #6B6B6B;
+}
+
+.status__radio:active + .status__label {
+  outline-color: #AEAAAA;
+}
+
+.status__radio:checked + .status__label {
+  outline-color: #AEAAAA;
+  background-color: #F87C09;
+}
+
+.star__list {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.star__radio {
+  position: absolute;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.star__icon {
+  width: 36px;
+  height: 36px;
+  background-image: url("../img/Star_white.svg");
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-position: center;
+}
+
+.star__icon:hover,
+.star__icon:hover ~ .star__icon,
+.star__radio:checked ~ .star__icon {
+  background-image: url("../img/Star.svg");
 }
 
 .footer {
@@ -1063,6 +1185,11 @@ fieldset {
   width: 100%;
   height: 74px;
   background-color: transparent;
+}
+
+.footer__btn {
+  width: 320px;
+  padding: 18px 90px;
 }
 
 .search {
@@ -1121,10 +1248,6 @@ fieldset {
     content: none;
   }
 
-  .library__footer {
-    display: none;
-  }
-
   .book {
     padding-left: 35px;
     padding-right: 35px;
@@ -1135,6 +1258,10 @@ fieldset {
     height: 450px;
     -o-object-fit: contain;
     object-fit: contain;
+  }
+
+  .add__text--area {
+    margin-bottom: 276px;
   }
 
   .footer {
@@ -1173,6 +1300,10 @@ fieldset {
     color: #FFFFFF;
     text-align: center;
     border: 0;
+  }
+
+  .library__footer {
+    display: none;
   }
 
   .fields__block {
@@ -1260,6 +1391,31 @@ fieldset {
   .book__label-footer {
     display: none;
     padding-bottom: 93px;
+  }
+
+  .add__container {
+    padding: 0 118px;
+  }
+
+  .add__form {
+    max-width: 698px;
+    margin: 0 auto;
+  }
+
+  .add__title {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 49px;
+  }
+
+  .add__step {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 100%;
+  }
+
+  .add__text--area {
+    margin-bottom: 90px;
   }
 }
 

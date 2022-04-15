@@ -1,18 +1,30 @@
 .upload {
-    max-width: 220px;
+    max-width: 222px;
     margin: 0 auto 15px;
 
     &__subtitle {
-
+        margin-bottom: 15px;
         font-weight: 500;
         font-size: 12px;
         line-height: 100%;
 
     }
 
-    &__label {}
+    &__label {
+        display: block;
+        width: 222px;
+        height: 290px;
+        background-image: url('../img/file.jpg'); // img  которпая в dist
+        background-size: cover;
+        border-radius: 6px;
+        cursor: pointer;
+    }
 
-    &__preview {}
+    &__preview {
+        display: none;
+    }
 
-    &__file {}
+    &__file {
+        display: none;
+    }
 }

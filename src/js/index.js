@@ -35,7 +35,7 @@ const closeAllPage = () => { // скрываем все секции
 
 // роутинг: напишем обработчики котрые будут запускаться в зависимости от адресной строки
 router.on({
-    '/': () => {
+    '/': () => { // если находимся на главнй странице
         closeAllPage();
         library.classList.remove('hide');
         search.classList.remove('search__active');
@@ -127,3 +127,78 @@ const controlField = (btn, list) => {
 
 controlField(fieldsBtnSort, fieldsListSort);
 controlField(fieldsBtnFilter, fieldsListFilter);
+
+
+const changeFieldset = () => {
+    const fileldsets = document.querySelectorAll('.add__fileldset');
+    const addBtn = document.querySelector('.add__btn'); //  кнопка Далее
+    const form = document.querySelector('.add__form');
+    //console.log(addBtn.dataset.count);
+    let count = 0;
+
+
+    addBtn.addEventListener('click', ({ target }) => { // target -свойтсов  внтури объекта evt, dsdtltn элемнет, на который нажали
+        const fieldset = fileldsets[count]; // получим fieldset на rотрый нажали
+        let valid = true; // валидный
+
+
+
+        for (const elem of fieldset.elements) { // перебираем HTMLCollection
+            //console.log(elem);
+            if (!elem.checkValidity()) { // если элемент невалидный
+                elem.classList.add('no-valid');
+                valid = false;
+            }
+            else {
+                elem.classList.remove('no-valid');
+            }
+        }
+
+        if (valid) {
+            count += 1;
+
+            if (count === fileldsets.length - 1) { // когда на третьей страничке формы
+                addBtn.textContent = 'Добавить книгу'; // меняем текст на кнпоке
+            }
+
+            if (count === fileldsets.length) {
+                const data = true; // данные с сервера получены
+                if (data) {
+                    form.reset(); // очищаем форму
+                    router.navigate('/'); //  переходим на главную страницу
+                    count = 0;
+                    addBtn.textContent = 'Далее';
+                }
+                // else { //  если пришла о сервера оишбка
+
+                // }
+
+            }
+
+
+            fieldset.classList.add('hide');
+            fileldsets[count].classList.remove('hide');
+        }
+
+        // [...fieldset.elements].forEach(elem => { //fieldset.elements -HTMLCollection(к нему нельяз применять forEach), поэтому применяем спред-оператор котрый превратит в массив
+        //     console.log(elem);
+        // })
+
+
+
+
+
+
+
+
+
+    });
+
+
+
+
+}
+
+
+changeFieldset();
+

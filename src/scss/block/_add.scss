@@ -7,19 +7,81 @@
         @media(max-width: 375px) {
             padding: 0 12px;
         }
+
+
+
+        @include laptop {
+            padding: 0 118px; //163-45
+
+        }
     }
+
+
 
     &__form {
         padding: 14px 0;
+
+        @include laptop {
+            max-width: 698px;
+            margin: 0 auto;
+        }
     }
 
+
+    &__form .footer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // @media (min-width: 480px) {
+        //     width: 320px;
+        // }
+
+    }
+
+
     &__fileldset {}
+
+    &__btn {
+
+        border-radius: 8px;
+        width: 320px;
+        margin: 0 auto;
+        border: 0;
+        color: $white;
+        background-color: $primary;
+
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 100%;
+
+        @include tablet {}
+    }
 
     &__title {
         margin-bottom: 8px;
         font-weight: 700;
         font-size: 26px;
         line-height: 32px;
+
+
+        @include laptop {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 49px;
+        }
+
+
+    }
+
+    &__subtitle {
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 100%;
+
+
     }
 
     &__step {
@@ -28,6 +90,12 @@
         font-weight: 400;
         font-size: 14px;
         line-height: 100%;
+
+        @include laptop {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 100%;
+        }
     }
 
     &__label {
@@ -50,9 +118,17 @@
     }
 
     &__text--area {
-
         min-height: 120px;
+        margin-bottom: 80px;
         resize: none; // чтобы нельзя было потянуть  текстарию
+
+        @include tablet {
+            margin-bottom: 276px;
+        }
+
+        @include laptop {
+            margin-bottom: 90px;
+        }
     }
 
 

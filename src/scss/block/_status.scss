@@ -1,0 +1,60 @@
+.status {
+
+    margin-bottom: 40px;
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px; // расстояние межуд флекс элементами
+    }
+
+    &__item {}
+
+    &__radio {
+        // input
+        position: absolute;
+        -moz-appearance: none; // для ff
+        -webkit-appearance: none; // для сафари
+        appearance: none; // чтоб не  оображались радиокнопки
+
+
+    }
+
+    &__label {
+        display: inline-block;
+        padding: 8px;
+        background-color: $white;
+        color: $black;
+        border-radius: 16px;
+        outline: 1px solid transparent;
+        transition: background-color .5s ease-in-out, outline-color .36s ease-in-out; // чтобы при наведении цвет менялся плавно
+
+        &:hover {
+            // принаведении
+            background-color: $secondary;
+        }
+
+        &:focus {}
+
+        &:active {
+            background-color: $primary;
+        }
+    }
+
+    &__radio:focus+&__label {
+        outline-color: $secondaryDark;
+    }
+
+    &__radio:active+&__label {
+        // при нажатии  на радиокнопку
+        outline-color: $primaryDark;
+    }
+
+
+    &__radio:checked+&__label {
+        // если радиокнпока нажата
+
+        outline-color: $primaryDark;
+        background-color: $primary;
+    }
+}

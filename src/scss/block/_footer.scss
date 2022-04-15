@@ -11,7 +11,11 @@
     height: 74px;
     background-color: transparent; // $black
 
-    &__btn {}
+    &__btn {
+        width: 320px;
+        padding: 18px 90px;
+
+    }
 
     @media(max-height: 500px) {
         width: auto;

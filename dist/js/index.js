@@ -41,6 +41,12 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 /* harmony import */ var navigo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(123);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
  // получаем секции:
 
 var library = document.querySelector('.library');
@@ -78,6 +84,7 @@ var closeAllPage = function closeAllPage() {
 
 router.on({
   '/': function _() {
+    // если находимся на главнй странице
     closeAllPage();
     library.classList.remove('hide');
     search.classList.remove('search__active');
@@ -155,6 +162,77 @@ var controlField = function controlField(btn, list) {
 
 controlField(fieldsBtnSort, fieldsListSort);
 controlField(fieldsBtnFilter, fieldsListFilter);
+
+var changeFieldset = function changeFieldset() {
+  var fileldsets = document.querySelectorAll('.add__fileldset');
+  var addBtn = document.querySelector('.add__btn'); //  кнопка Далее
+
+  var form = document.querySelector('.add__form'); //console.log(addBtn.dataset.count);
+
+  var count = 0;
+  addBtn.addEventListener('click', function (_ref2) {
+    var target = _ref2.target;
+    // target -свойтсов  внтури объекта evt, dsdtltn элемнет, на который нажали
+    var fieldset = fileldsets[count]; // получим fieldset на rотрый нажали
+
+    var valid = true; // валидный
+
+    var _iterator = _createForOfIteratorHelper(fieldset.elements),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var elem = _step.value;
+
+        // перебираем HTMLCollection
+        //console.log(elem);
+        if (!elem.checkValidity()) {
+          // если элемент невалидный
+          elem.classList.add('no-valid');
+          valid = false;
+        } else {
+          elem.classList.remove('no-valid');
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    if (valid) {
+      count += 1;
+
+      if (count === fileldsets.length - 1) {
+        // когда на третьей страничке формы
+        addBtn.textContent = 'Добавить книгу'; // меняем текст на кнпоке
+      }
+
+      if (count === fileldsets.length) {
+        var data = true; // данные с сервера получены
+
+        if (data) {
+          form.reset(); // очищаем форму
+
+          router.navigate('/'); //  переходим на главную страницу
+
+          count = 0;
+          addBtn.textContent = 'Далее';
+        } // else { //  если пришла о сервера оишбка
+        // }
+
+      }
+
+      fieldset.classList.add('hide');
+      fileldsets[count].classList.remove('hide');
+    } // [...fieldset.elements].forEach(elem => { //fieldset.elements -HTMLCollection(к нему нельяз применять forEach), поэтому применяем спред-оператор котрый превратит в массив
+    //     console.log(elem);
+    // })
+
+  });
+};
+
+changeFieldset();
 })();
 
 /******/ })()

@@ -1,0 +1,35 @@
+.star {
+
+    &__list {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+    &__radio {
+        // input
+        position: absolute;
+        -moz-appearance: none; // для ff
+        -webkit-appearance: none; // для сафари
+        appearance: none; // чтоб не  оображались радиокнопки
+
+    }
+
+    &__icon {
+        width: 36px;
+        height: 36px;
+        background-image: url('../img/Star_white.svg');
+        background-repeat: no-repeat;
+        background-size: 36px;
+        background-position: center;
+    }
+
+
+    &__icon:hover,
+    &__icon:hover~&__icon,
+    &__radio:checked~&__icon {
+        // для элеменов всех полседюущих
+        background-image: url('../img/Star.svg');
+    }
+
+}

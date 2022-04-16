@@ -18,7 +18,16 @@
         background-size: cover;
         border-radius: 6px;
         cursor: pointer;
+
+        &--active {
+            background-image: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
+
+
 
     &__preview {
         display: none;

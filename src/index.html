@@ -8,6 +8,7 @@
     <title>Big Bithers</title>
     <link rel="stylesheet" href="css/index.min.css">
     <script src="js/index.min.js" defer></script>
+    <!--type="module" работает как defer-->
 </head>
 
 <body class="body">
@@ -206,7 +207,7 @@
         <!-- страница с книгой-->
         <header class="header book__header">
             <div class="container header__container book__ccontainer">
-                <button class="header__btn header__btn--back"></button>
+                <button class="header__btn header__btn--back book__btn--back"></button>
                 <button class="header__btn header__btn--delete"></button>
             </div>
         </header>
@@ -288,7 +289,7 @@
                         <p class="add__subtitle upload__subtitle">Загрузите обложку</p>
                         <label class="upload__label">
                             <img class="upload__preview" src="about:blank" alt="Превью изображения">
-                            <input type="file" class="upload__file" accept="image/jpeg">
+                            <input type="file" name="file" class="upload__file" accept="image/jpeg">
                         </label>
                     </div>
                 </fieldset>
@@ -350,7 +351,7 @@
 
     <div class="search">
         <!--поле поиска-->
-        <div class="container">
+        <div class="container container__search">
             <form class="search__form">
                 <label>
                     <input class="search__input" type="search">

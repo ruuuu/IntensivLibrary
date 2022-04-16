@@ -42,7 +42,7 @@ router.on({
         document.body.classList.remove('body__gradient');
 
     },
-    'book': () => { // если в адресной строке будет наисано book, то вызовется эта фукния
+    'book': () => { // если в адресной строке будет написано book, то вызовется эта фукния
         closeAllPage();
         book.classList.remove('hide');
         search.classList.remove('search__active');
@@ -63,19 +63,22 @@ router.on({
 addBtns.forEach(((btn) => {
 
     btn.addEventListener('click', () => {
-        router.navigate('add'); // переходи на cекцию add(форма)
+        router.navigate('add'); // переходим на cекцию add(форма)
     })
+
 }));
 
 
-backBtns.forEach((backBtn) => {
+backBtns.forEach((backBtn) => { // нажатие на кнопку Назад
+
     backBtn.addEventListener('click', () => {
-        router.navigate('/');
-    })
+        router.navigate('/'); // переходим на главную страницу
+    });
+
 });
 
 
-// закрытие поля писка:
+// закрытие поля поиска:
 const closeSearch = (evt) => { // нажатие на блок .search
     // evt - объект событи, создается при наустпулении события. evt.target-  элемент на котором произошел клик
     if (evt.target.closest('.search, .header__btn--search')) { // если у target(нажатый эл-ент) или его родителя есть классы .search или .header__btn--search
@@ -83,8 +86,7 @@ const closeSearch = (evt) => { // нажатие на блок .search
     }
 
     search.classList.remove('search__active');
-    // btnSearchs[0].classList.remove('hide');
-    // btnSearchs[1].classList.remove('hide');
+
     document.body.removeEventListener('click', closeSearch); // удаляем событие 
 
 };
@@ -125,27 +127,27 @@ const controlField = (btn, list) => {
     });
 }
 
-controlField(fieldsBtnSort, fieldsListSort);
-controlField(fieldsBtnFilter, fieldsListFilter);
+controlField(fieldsBtnSort, fieldsListSort); // для сортировки
+controlField(fieldsBtnFilter, fieldsListFilter); // для фильтра
 
 
 const changeFieldset = () => {
-    const fileldsets = document.querySelectorAll('.add__fileldset');
+    const fileldsets = document.querySelectorAll('.add__fileldset'); //[fieldset, fieldset,fieldset]
     const addBtn = document.querySelector('.add__btn'); //  кнопка Далее
-    const form = document.querySelector('.add__form');
+    const form = document.querySelector('.add__form'); // форма
     //console.log(addBtn.dataset.count);
+    const otherBackBtn = document.querySelector('.other-class'); // кнопка Назад
     let count = 0;
 
 
-    addBtn.addEventListener('click', ({ target }) => { // target -свойтсов  внтури объекта evt, dsdtltn элемнет, на который нажали
-        const fieldset = fileldsets[count]; // получим fieldset на rотрый нажали
+    // обработчик кнопки Далее:
+    addBtn.addEventListener('click', ({ target }) => { // target -свойство  внутри объекта evt, dsdtltn элемнет, на который нажали
+        const fieldset = fileldsets[count]; // получим fieldset на котром находимся
         let valid = true; // валидный
-
-
 
         for (const elem of fieldset.elements) { // перебираем HTMLCollection
             //console.log(elem);
-            if (!elem.checkValidity()) { // если элемент невалидный
+            if (!elem.checkValidity()) { // если элемент невалидный, выделяем поля красным border
                 elem.classList.add('no-valid');
                 valid = false;
             }
@@ -169,29 +171,41 @@ const changeFieldset = () => {
                     count = 0;
                     addBtn.textContent = 'Далее';
                 }
-                // else { //  если пришла о сервера оишбка
-
-                // }
-
             }
-
 
             fieldset.classList.add('hide');
             fileldsets[count].classList.remove('hide');
         }
 
-        // [...fieldset.elements].forEach(elem => { //fieldset.elements -HTMLCollection(к нему нельяз применять forEach), поэтому применяем спред-оператор котрый превратит в массив
-        //     console.log(elem);
-        // })
+    });
 
 
 
+    otherBackBtn.addEventListener('click', () => { // обработчик кнопки Назад в форме
+        if (count === 0) {
+            console.log('count=0, т.е. первая страница формы');
+            router.navigate('/');
 
+        }
 
+        if (count === 1) {
+            console.log('count=1, т.е. вторая  страница формы');
+            count--;
+            fileldsets[0].classList.remove('hide');
+            fileldsets[1].classList.add('hide');
+            fileldsets[2].classList.add('hide');
+            router.navigate('add');
 
+        }
 
-
-
+        if (count === 2) {
+            console.log('count=2, т.е. третья страница формы');
+            count--;
+            fileldsets[0].classList.add('hide');
+            fileldsets[1].classList.remove('hide');
+            fileldsets[2].classList.add('hide');
+            router.navigate('add');
+        }
     });
 
 
@@ -202,3 +216,14 @@ const changeFieldset = () => {
 
 changeFieldset();
 
+
+
+
+
+
+
+
+
+// [...fieldset.elements].forEach(elem => { //fieldset.elements -HTMLCollection(к нему нельяз применять forEach), поэтому применяем спред-оператор котрый превратит в массив
+        //     console.log(elem);
+        // })

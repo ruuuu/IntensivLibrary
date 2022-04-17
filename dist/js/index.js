@@ -1172,7 +1172,7 @@ var data = {
   labels: [],
   sortBook: function sortBook(sort) {
     return this.books.sort(function (a, b) {
-      // отсортирует массив книг, a b - объект книги
+      //сортирует books b и возвращет отсортированный массив книг, a={книга} и b={книга}
       if (sort === 'up') return a.rating > b.rating ? 1 : -1;
       if (sort === 'down') return a.rating < b.rating ? 1 : -1;
     });
@@ -1273,8 +1273,9 @@ var renderListBooks = /*#__PURE__*/function () {
             data.labels = labels;
             renederList(books);
             renderFields(labels);
+            countBooks(books);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
@@ -1285,7 +1286,12 @@ var renderListBooks = /*#__PURE__*/function () {
   return function renderListBooks() {
     return _ref2.apply(this, arguments);
   };
-}(); // getStars(stars).join('')
+}();
+var countBooks = function countBooks(books) {
+  // перелаем массив книг
+  var count = document.querySelector('.library__count');
+  count.textContent = String(books.length) + ' книг'; // длина массива
+}; // getStars(stars).join('')
 //getStars(stars) -  получим массив звезд и методом join() объединем их  через пробел
 ;// CONCATENATED MODULE: ./src/js/modules/renderBook.js
 
@@ -1380,7 +1386,9 @@ var renderBook = /*#__PURE__*/function () {
   return function renderBook(_x) {
     return _ref2.apply(this, arguments);
   };
-}();
+}(); // const labelButton = document.querySelector('.book__label.book__label-footer'); // кнопка на странице книги
+// labelButton.addEventListener('click', () => {
+// })
 ;// CONCATENATED MODULE: ./src/js/modules/router.js
 
 
@@ -1461,6 +1469,7 @@ backBtns.forEach(function (backBtn) {
 
 
 
+
 var btnSearchs = document.querySelectorAll('.header__btn--search'); // кнпоки поиска в header
 
 var search_search = document.querySelector('.search'); // блок с поиском
@@ -1480,6 +1489,8 @@ var closeSearch = function closeSearch(evt) {
   document.body.removeEventListener('click', closeSearch); // удаляем событие 
 
   renederList(data.books); //  возвращаем списко книг
+
+  countBooks(data.books);
 };
 
 btnSearchs.forEach(function (btnSearch) {
@@ -1490,7 +1501,8 @@ btnSearchs.forEach(function (btnSearch) {
     // третий параметр true нужен чтобы при нажатии на карточку, поле поиска закрывалось и получали стрнаицу книги 
     // btnSearch.classList.add('hide');
   });
-});
+}); // поиск
+
 searchForm.addEventListener('submit', /*#__PURE__*/function () {
   var _ref = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(evt) {
     var books;
@@ -1498,7 +1510,6 @@ searchForm.addEventListener('submit', /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            // поиск
             evt.preventDefault(); // отменяем собвтие по умолчанию, те перезагрузка страницы
 
             _context.next = 3;
@@ -1507,11 +1518,12 @@ searchForm.addEventListener('submit', /*#__PURE__*/function () {
           case 3:
             books = _context.sent;
             renederList(books);
+            countBooks(books);
             evt.target.reset(); // очищаем поле поиска
 
             closeSearch(evt.target);
 
-          case 7:
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -1771,12 +1783,14 @@ var controlField = function controlField(btn, list, offList) {
       data.sortBook(target.dataset.sort); // значение атрибута data-sort: target.dataset.sort
 
       renederList();
+      countBooks(data.books);
     }
 
     if (target.dataset.filter) {
       var mas = data.filterBook(target.dataset.filter); //  отфильрованный массив книг получим
 
       renederList(mas);
+      countBooks(mas);
     }
   });
 };

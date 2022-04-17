@@ -1,5 +1,6 @@
 import { searchBooks } from './serverBook.js';
 import { renederList, data } from './renderListBooks.js';
+import { countBooks } from './renderListBooks.js';
 
 
 
@@ -17,10 +18,10 @@ const closeSearch = (evt) => { // нажатие на блок .search
 
     search.classList.remove('search__active');
 
-
     document.body.removeEventListener('click', closeSearch); // удаляем событие 
-    renederList(data.books); //  возвращаем списко книг
 
+    renederList(data.books); //  возвращаем списко книг
+    countBooks(data.books);
 };
 
 
@@ -39,11 +40,12 @@ btnSearchs.forEach((btnSearch) => {
 
 
 
-
-searchForm.addEventListener('submit', async (evt) => { // поиск
+// поиск
+searchForm.addEventListener('submit', async (evt) => {
     evt.preventDefault(); // отменяем собвтие по умолчанию, те перезагрузка страницы
     const books = await searchBooks(searchForm.input.value);
     renederList(books);
+    countBooks(books);
     evt.target.reset(); // очищаем поле поиска
 
     closeSearch(evt.target);

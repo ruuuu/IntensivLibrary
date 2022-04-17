@@ -74,3 +74,10 @@ export const renderBook = async (id) => { // добавляем   async пото
 
 };
 
+
+// const labelButton = document.querySelector('.book__label.book__label-footer'); // кнопка на странице книги
+// labelButton.addEventListener('click', () => {
+
+// })
+
+

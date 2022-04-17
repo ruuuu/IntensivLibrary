@@ -5,7 +5,7 @@ export const data = {
     books: [],
     labels: [],
     sortBook(sort) {
-        return this.books.sort((a, b) => { // отсортирует массив книг, a b - объект книги
+        return this.books.sort((a, b) => { //сортирует books b и возвращет отсортированный массив книг, a={книга} и b={книга}
             if (sort === 'up') return a.rating > b.rating ? 1 : -1;
             if (sort === 'down') return a.rating < b.rating ? 1 : -1;
         });
@@ -100,13 +100,11 @@ const renderFields = (labels) => { // labels = {"wish": "хочу прочита
         fieldsList.append(item); // li добавляем в  ul
 
     }
-
-
 }
 
 
 
-export const renderListBooks = async () => {
+export const renderListBooks = async () => { // async сатвим тк  идет обращение к серверу
 
     const [books, labels] = await Promise.all([getBooks(), getLabels()]); // ждем кгда оба метода вернут данные(массив книг и массив лейблов)
     //console.log('массив книг ', books); // books = [{},{},{},{}], labels = {"wish": "хочу прочитать", "ready": "прочитал"}
@@ -116,8 +114,19 @@ export const renderListBooks = async () => {
 
     renederList(books);
     renderFields(labels);
+    countBooks(books);
 
 };
+
+
+
+export const countBooks = (books) => { // перелаем массив книг
+
+    const count = document.querySelector('.library__count');
+    count.textContent = String(books.length) + ' книг'; // длина массива
+
+};
+
 
 
 // getStars(stars).join('')

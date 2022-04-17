@@ -237,4 +237,3 @@ const base = gulp.parallel(html, scss, js, image, avif, webp, copy); // таск
 export const build = gulp.series(clear, base); // для прода, спрва вызовется таска html, потом base
 
 export default gulp.series(develop, base, server); // сперва вызовется таски develop, потом base,  потм server
-

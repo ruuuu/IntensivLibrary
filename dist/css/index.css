@@ -1091,6 +1091,13 @@ fieldset {
   cursor: pointer;
 }
 
+.upload__label--active {
+  background-image: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .upload__preview {
   display: none;
 }

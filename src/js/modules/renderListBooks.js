@@ -62,7 +62,7 @@ export const renderListBooks = async () => {
 
 
 
-}
+};
 
 
 // getStars(stars).join('')

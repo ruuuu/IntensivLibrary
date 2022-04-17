@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Bithers</title>
+    <title>Моя библиотека</title>
     <link rel="stylesheet" href="css/index.min.css">
     <script src="js/index.min.js" defer></script>
     <!--type="module" работает как defer-->
@@ -213,37 +213,37 @@
         </header>
 
         <div class="contaner book__container">
-            <div class="book__wrapper">
+            <!-- <div class="book__wrapper">
                 <img class="book__img" src="img/book.jpg" alt="Обложка 1984">
                 <button class="book__label book__label--img">Хочу прочитать</button>
-            </div>
+            </div> 
 
             <div class="book__content">
                 <h2 class="book__title">1984</h2>
                 <p class="book__author">Джордж Оруэлл</p>
                 <div class="book__rating">
                     <img class="book__rating-star" src="img/Star.svg" alt="Рейтинг 4 из 5">
-                    <!--значнеи alt прочитают роботы-->
-                    <!--картинка из dist/img-->
-                    <img class="book__rating-star" src="img/Star.svg" alt="">
-                    <img class="book__rating-star" src="img/Star.svg" alt="">
-                    <img class="book__rating-star" src="img/Star.svg" alt="">
-                    <img class="book__rating-star" id="five" src="img/Star.svg" alt="">
-                </div>
-
-                <h3 class="book__subtitle">Описание</h3>
-
-                <p class="book__description">Главный герой — Уинстон Смит — живёт в Лондоне, работает в Министерстве
-                    правды и является членом внешней партии. Он не разделяет партийные лозунги и идеологию и в глубине
-                    души сильно сомневается в партии, окружающей действительности и вообще во всём том, в чём только
-                    можно сомневаться. Чтобы «выпустить пар» и не совершить какой-нибудь безрассудный поступок, ведёт
-                    дневник, в котором старается излагать все свои сомнения. На людях же притворяется приверженцем
-                    партийных идей. Однако опасается, что девушка Джулия, работающая в том же министерстве, шпионит за
-                    ним и хочет разоблачить его. В то же время полагает, что высокопоставленный сотрудник их
-                    министерства, член внутренней партии некий О’Брайен также не разделяет мнения партии и является
-                    подпольным революционером.
-                </p>
+                    значнеи alt прочитают роботы
+            картинка из dist/img
+            <img class="book__rating-star" src="img/Star.svg" alt="">
+            <img class="book__rating-star" src="img/Star.svg" alt="">
+            <img class="book__rating-star" src="img/Star.svg" alt="">
+            <img class="book__rating-star" id="five" src="img/Star.svg" alt="">
             </div>
+
+            <h3 class="book__subtitle">Описание</h3>
+
+            <p class="book__description">Главный герой — Уинстон Смит — живёт в Лондоне, работает в Министерстве
+            правды и является членом внешней партии. Он не разделяет партийные лозунги и идеологию и в глубине
+            души сильно сомневается в партии, окружающей действительности и вообще во всём том, в чём только
+            можно сомневаться. Чтобы «выпустить пар» и не совершить какой-нибудь безрассудный поступок, ведёт
+            дневник, в котором старается излагать все свои сомнения. На людях же притворяется приверженцем
+            партийных идей. Однако опасается, что девушка Джулия, работающая в том же министерстве, шпионит за
+            ним и хочет разоблачить его. В то же время полагает, что высокопоставленный сотрудник их
+            министерства, член внутренней партии некий О’Брайен также не разделяет мнения партии и является
+            подпольным революционером.
+            </p> 
+        </div> -->
         </div>
 
         <footer class="footer book__footer">
@@ -289,7 +289,8 @@
                         <p class="add__subtitle upload__subtitle">Загрузите обложку</p>
                         <label class="upload__label">
                             <img class="upload__preview" src="about:blank" alt="Превью изображения">
-                            <input type="file" name="file" class="upload__file" accept="image/jpeg">
+                            <input type="file" name="image" class="upload__file" accept="image/jpeg">
+                            <!--image/jpeg знаичт что приybмает только такого формата-->
                         </label>
                     </div>
                 </fieldset>

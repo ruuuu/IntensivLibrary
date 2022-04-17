@@ -10,11 +10,9 @@ import del from 'del';
 import rename from 'gulp-rename';
 
 //html
-
 import htmlMin from 'gulp-htmlmin';
 
 // css
-
 import sass from 'sass'; // sass -движок котрый обрбатывает less/scss файлы
 import gulpSass from 'gulp-sass';
 const scssToCss = gulpSass(sass);
@@ -29,7 +27,6 @@ import {
 
 
 // js
-
 import webpack from 'webpack-stream';
 import terser from 'gulp-terser';
 

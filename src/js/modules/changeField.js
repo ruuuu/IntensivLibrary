@@ -1,7 +1,9 @@
 import { router } from './router.js'; //  импорт объекта router из router.js
 import { clearPreview } from './upload.js';
+import { addBooks } from './serverBook.js';
+import toBase64 from './toBase64.js';
 
-const fileldsets = document.querySelectorAll('.add__fileldset'); //[fieldset, fieldset,fieldset]
+const fileldsets = document.querySelectorAll('.add__fileldset'); // [fieldset, fieldset,fieldset]
 const addBtn = document.querySelector('.add__btn'); //  кнопка Далее
 const form = document.querySelector('.add__form'); // форма
 //console.log(addBtn.dataset.count);
@@ -11,8 +13,16 @@ let count = 0;
 
 
 
-const sendBook = () => {
-    const data = true; // данные с сервера получены
+const sendBook = async () => {
+    const formData = new FormData(form);  //полуим  колеккцию котрую можн вытащить из любой формы,  у полей формы долен быть name
+    const data = Object.fromEntries(formData); // name у полей станут свойствами объекта, а value у полей станут значениям свойств
+    console.log(data);// объект(джсон) котрый отправляем на сервер
+
+    data.image = await toBase64(data.image); // ждем когда операция выпонлится
+    console.log(data);
+
+
+    const book = await addBooks(data); // отпарвка данных на сервер
     if (data) {
         form.reset(); // очищаем форму
         clearPreview(); // убираем картнки котрую выбрали

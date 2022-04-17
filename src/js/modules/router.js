@@ -1,6 +1,6 @@
 import Navigo from 'navigo';
-import { renderListBooks } from './modules/renderListBooks.js';
-import { renderBook } from './modules/renderBook.js';
+import { renderListBooks } from './renderListBooks.js';
+import { renderBook } from './renderBook.js';
 
 
 

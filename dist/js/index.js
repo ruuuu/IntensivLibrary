@@ -1039,6 +1039,14 @@ var getLabels = /*#__PURE__*/function () {
 
 var libraryList = document.querySelector('.library__list'); // <ul class="library__list"> </ul>
 
+var data = {
+  books: [],
+  labels: [],
+  sortBook: function sortBook(sort) {
+    return this.books; // объкет
+  }
+};
+
 var getStars = function getStars(raiting) {
   // 
   var stars = []; // пустой массив, в цикле его будем заполнять

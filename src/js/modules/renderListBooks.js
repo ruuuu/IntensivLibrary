@@ -3,6 +3,15 @@ import { getBooks, getLabels, API_URI } from "./serverBook.js";
 const libraryList = document.querySelector('.library__list'); // <ul class="library__list"> </ul>
 
 
+export const data = {
+    books: [],
+    labels: [],
+    sortBook(sort) {
+        return this.books; // объкет
+    }
+
+};
+
 const getStars = (raiting) => { // 
     const stars = []; // пустой массив, в цикле его будем заполнять
 
@@ -58,10 +67,6 @@ export const renderListBooks = async () => {
         libraryList.append(item); // добавляем в ul li(item)
 
     });
-
-
-
-
 };
 
 

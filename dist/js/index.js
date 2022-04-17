@@ -895,7 +895,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   }
 }
 
-function _asyncToGenerator(fn) {
+function asyncToGenerator_asyncToGenerator(fn) {
   return function () {
     var self = this,
         args = arguments;
@@ -914,16 +914,36 @@ function _asyncToGenerator(fn) {
     });
   };
 }
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js
+
+
+
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__(757);
 ;// CONCATENATED MODULE: ./src/js/modules/serverBook.js
 
 
 var API_URI = 'http://localhost:3024/'; // когда загрузим на хероку, то этот адерс надр поменять
-// получение списка книг
 
 var getBooks = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(id) {
+  var _ref = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(id) {
     var response;
     return regenerator.wrap(function _callee$(_context) {
       while (1) {
@@ -957,19 +977,15 @@ var getBooks = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-var addBooks = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(data) {
+var searchBooks = /*#__PURE__*/function () {
+  var _ref2 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(search) {
     var response;
     return regenerator.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return fetch("".concat(API_URI, "api/books/"), {
-              method: 'POST',
-              body: JSON.stringify(data) // тело запроса в формате JSON отправляем
-
-            });
+            return fetch("".concat(API_URI, "api/books/?search=").concat(search));
 
           case 2:
             response = _context2.sent;
@@ -992,20 +1008,23 @@ var addBooks = /*#__PURE__*/function () {
     }, _callee2);
   }));
 
-  return function addBooks(_x2) {
+  return function searchBooks(_x2) {
     return _ref2.apply(this, arguments);
   };
-}(); // получение спсика лейблов
-
-var getLabels = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee3() {
+}();
+var addBooks = /*#__PURE__*/function () {
+  var _ref3 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee3(data) {
     var response;
     return regenerator.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.next = 2;
-            return fetch("".concat(API_URI, "api/label/"));
+            return fetch("".concat(API_URI, "api/books/"), {
+              method: 'POST',
+              body: JSON.stringify(data) // тело запроса в формате JSON отправляем
+
+            });
 
           case 2:
             response = _context3.sent;
@@ -1028,27 +1047,148 @@ var getLabels = /*#__PURE__*/function () {
     }, _callee3);
   }));
 
-  return function getLabels() {
+  return function addBooks(_x3) {
     return _ref3.apply(this, arguments);
   };
 }();
+var getLabels = /*#__PURE__*/function () {
+  var _ref4 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee4() {
+    var response;
+    return regenerator.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return fetch("".concat(API_URI, "api/label/"));
+
+          case 2:
+            response = _context4.sent;
+
+            if (!response.ok) {
+              _context4.next = 5;
+              break;
+            }
+
+            return _context4.abrupt("return", response.json());
+
+          case 5:
+            throw new Error(response.statusText);
+
+          case 6:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function getLabels() {
+    return _ref4.apply(this, arguments);
+  };
+}();
+var deleteBook = /*#__PURE__*/function () {
+  var _ref5 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee5(id) {
+    var response;
+    return regenerator.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return fetch("".concat(API_URI, "api/books/").concat(id), {
+              method: 'DELETE'
+            });
+
+          case 2:
+            response = _context5.sent;
+
+            if (!response.ok) {
+              _context5.next = 5;
+              break;
+            }
+
+            return _context5.abrupt("return", response.json());
+
+          case 5:
+            throw new Error(response.statusText);
+
+          case 6:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function deleteBook(_x4) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+var updateBook = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee6(id, data) {
+    var response;
+    return _regeneratorRuntime.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.next = 2;
+            return fetch("".concat(API_URI, "api/books/").concat(id), {
+              method: 'PATCH',
+              body: JSON.stringify(data)
+            });
+
+          case 2:
+            response = _context6.sent;
+
+            if (!response.ok) {
+              _context6.next = 5;
+              break;
+            }
+
+            return _context6.abrupt("return", response.json());
+
+          case 5:
+            throw new Error(response.statusText);
+
+          case 6:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+
+  return function updateBook(_x5, _x6) {
+    return _ref6.apply(this, arguments);
+  };
+}()));
 ;// CONCATENATED MODULE: ./src/js/modules/renderListBooks.js
 
 
 
 
-var libraryList = document.querySelector('.library__list'); // <ul class="library__list"> </ul>
 
 var data = {
   books: [],
   labels: [],
   sortBook: function sortBook(sort) {
-    return this.books; // объкет
+    return this.books.sort(function (a, b) {
+      // отсортирует массив книг, a b - объект книги
+      if (sort === 'up') return a.rating > b.rating ? 1 : -1;
+      if (sort === 'down') return a.rating < b.rating ? 1 : -1;
+    });
+  },
+  filterBook: function filterBook(value) {
+    return this.books.filter(function (book) {
+      return book.label === value;
+    }); // к массиву применеям метод filter, book- текущая книга. Вернет отфильтрованный массив
   }
 };
+var libraryList = document.querySelector('.library__list'); // <ul class="library__list"> </ul>
+
+var fieldsList = document.querySelector('.fields__list-filter'); // фильтр  ul
+// получение вертски со звездами
 
 var getStars = function getStars(raiting) {
-  // 
   var stars = []; // пустой массив, в цикле его будем заполнять
 
   for (var i = 0; i < 5; i++) {
@@ -1063,10 +1203,56 @@ var getStars = function getStars(raiting) {
   }
 
   return stars;
+}; // выводим список книг
+
+
+var renederList = function renederList() {
+  var books = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : data.books;
+  //если книжки не передали, то отображаем data.books(то что с сервера приходит)
+  libraryList.textContent = ''; // нач значение пусто,<ul class="list__library"> </ul>
+  // деструктуризация:
+
+  var items = books.map(function (_ref) {
+    var author = _ref.author,
+        description = _ref.description,
+        id = _ref.id,
+        image = _ref.image,
+        label = _ref.label,
+        rating = _ref.rating,
+        title = _ref.title;
+    // перебираем книги
+    var item = document.createElement('li'); // <li> </li>
+
+    item.classList.add('list__item');
+    item.innerHTML = "\n            <a href=\"/#/book?id=".concat(id, "\">\n            <article class=\"cart\">\n                <div class=\"cart__wrapper\">\n                    <img class=\"cart__image\" src=\"").concat(API_URI + image, "\" alt=\"").concat(title, "\">\n                    <p class=\"cart__label\">").concat(data.labels[label], "</p>\n                </div>\n\n                <div class=\"cart__content\">\n                    <h3 class=\"cart__title\">").concat(title, "</h3>\n                    <p class=\"cart__author\">").concat(author, "</p>\n                    <p class=\"cart__description\">").concat(description.substring(0, 80), "...</p>\n                    <div class=\"cart__rating\">\n                        ").concat(getStars(rating).join(''), "    \n                    </div>\n                </div>\n            </article>\n        </a>\n        ");
+    return item;
+  }); // map
+
+  libraryList.append.apply(libraryList, _toConsumableArray(items)); // добавляем в ul все li(item) , ... спред-оператор котрый превратит в массив
+};
+
+var renderFields = function renderFields(labels) {
+  // labels = {"wish": "хочу прочитать", "ready": "прочитал"}
+  fieldsList.textContent = ''; // <ul></ul>
+
+  for (var key in labels) {
+    // console.log(key);
+    // console.log(labels[key]);
+    var item = document.createElement('li');
+    item.classList.add('fields__item');
+    var button = document.createElement('button');
+    button.classList.add('fields__button');
+    button.dataset.filter = key; // добавили кнпоке дата-атрибут data-filter='wish'
+
+    button.textContent = labels[key];
+    item.append(button); // button добавляем в li
+
+    fieldsList.append(item); // li добавляем в  ul
+  }
 };
 
 var renderListBooks = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+  var _ref2 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
     var _yield$Promise$all, _yield$Promise$all2, books, labels;
 
     return regenerator.wrap(function _callee$(_context) {
@@ -1082,26 +1268,13 @@ var renderListBooks = /*#__PURE__*/function () {
             books = _yield$Promise$all2[0];
             labels = _yield$Promise$all2[1];
             // ждем кгда оба метода вернут данные(массив книг и массив лейблов)
-            libraryList.textContent = ''; // <ul class="list__library"> </ul>
-            // деструктуризация:
+            //console.log('массив книг ', books); // books = [{},{},{},{}], labels = {"wish": "хочу прочитать", "ready": "прочитал"}
+            data.books = books;
+            data.labels = labels;
+            renederList(books);
+            renderFields(labels);
 
-            books.forEach(function (_ref2) {
-              var author = _ref2.author,
-                  description = _ref2.description,
-                  id = _ref2.id,
-                  image = _ref2.image,
-                  label = _ref2.label,
-                  rating = _ref2.rating,
-                  title = _ref2.title;
-              // books = [{},{},{},{}]
-              var item = document.createElement('li'); // <li> </li>
-
-              item.classList.add('list__item');
-              item.innerHTML = "\n            <a href=\"/#/book?id=".concat(id, "\">\n            <article class=\"cart\">\n                <div class=\"cart__wrapper\">\n                    <img class=\"cart__image\" src=\"").concat(API_URI + image, "\" alt=\"").concat(title, "\">\n                    <p class=\"cart__label\">").concat(labels[label], "</p>\n                </div>\n\n                <div class=\"cart__content\">\n                    <h3 class=\"cart__title\">").concat(title, "</h3>\n                    <p class=\"cart__author\">").concat(author, "</p>\n                    <p class=\"cart__description\">").concat(description.substring(0, 80), "...</p>\n                    <div class=\"cart__rating\">\n                        ").concat(getStars(rating).join(''), "    \n                    </div>\n                </div>\n            </article>\n        </a>\n        ");
-              libraryList.append(item); // добавляем в ul li(item)
-            });
-
-          case 8:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -1110,7 +1283,7 @@ var renderListBooks = /*#__PURE__*/function () {
   }));
 
   return function renderListBooks() {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }(); // getStars(stars).join('')
 //getStars(stars) -  получим массив звезд и методом join() объединем их  через пробел
@@ -1124,9 +1297,28 @@ var container = document.querySelector('.book__container'); // <div class="book_
 var btnDelete = document.querySelector('.header__btn--delete'); // кнопка корзины
 
 var bookLabel = document.querySelector('.footer__btn.book__label'); // кнопка "Хочу прочитать" в футере
+// обработчик удаления книги
+
+btnDelete.addEventListener('click', /*#__PURE__*/asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+  return regenerator.wrap(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return deleteBook(btnDelete.dataset.id);
+
+        case 2:
+          router.navigate('/'); // преходим на главную страницу
+
+        case 3:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _callee);
+}))); // получение верстки со звездами
 
 var renderBook_getStars = function getStars(raiting) {
-  // п
   var stars = []; // пустой массив, в цикле его будем заполнять
 
   for (var i = 0; i < 5; i++) {
@@ -1141,26 +1333,27 @@ var renderBook_getStars = function getStars(raiting) {
   }
 
   return stars;
-};
+}; //  отображаем книгу
+
 
 var renderBook = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(id) {
+  var _ref2 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(id) {
     var _yield$Promise$all, _yield$Promise$all2, books, labels, author, title, description, label, image, rating, btnLabel;
 
-    return regenerator.wrap(function _callee$(_context) {
+    return regenerator.wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            _context.next = 2;
+            _context2.next = 2;
             return Promise.all([getBooks(id), getLabels()]);
 
           case 2:
-            _yield$Promise$all = _context.sent;
+            _yield$Promise$all = _context2.sent;
             _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 2);
             books = _yield$Promise$all2[0];
             labels = _yield$Promise$all2[1];
-            // books = [{},{},{},{}]
-            console.log(books);
+            // 
+            console.log('книга ', books);
             container.textContent = ''; //нач значение пусто. у  <div class="book__container"> </div>
 
             author = books.author, title = books.title, description = books.description, label = books.label, image = books.image, rating = books.rating; // деуструктуризация
@@ -1171,21 +1364,21 @@ var renderBook = /*#__PURE__*/function () {
             btnLabel.dataset.label = label; // btnLabel устанавливаем дата атрибут data-label=label
 
             container.innerHTML = "\n            <div class=\"book__wrapper\">\n                <img class=\"book__img\" src=\"".concat(API_URI).concat(image, "\" alt=\"").concat(title, "\">\n                ").concat(btnLabel.outerHTML, "\n            </div>\n\n            <div class=\"book__content\">\n                <h2 class=\"book__title\">").concat(title, "</h2>\n                <p class=\"book__author\">").concat(author, "</p>\n                <div class=\"book__rating\">\n                    ").concat(renderBook_getStars(rating).join(''), "\n                </div>\n\n                <h3 class=\"book__subtitle\">\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</h3>\n\n                <p class=\"book__description\">").concat(description, "</p>\n            </div>\n    ");
-            btnDelete.dataset.id = id; // кнопке удаления добавили дата-атрибут data-id = id
+            btnDelete.dataset.id = id; // кнопке удаления добавили дата-атрибут data-id = id(id книги)
 
             bookLabel.dataset.label = label;
             bookLabel.textContent = labels[label];
 
           case 17:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
 
   return function renderBook(_x) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 ;// CONCATENATED MODULE: ./src/js/modules/router.js
@@ -1205,7 +1398,7 @@ var backBtns = document.querySelectorAll('.header__btn--back'); // кнопки 
 
 var search = document.querySelector('.search'); // блок с поиском
 
-var router = new navigo_min('/', {
+var router_router = new navigo_min('/', {
   // созадем объект роутера, экспортруем его,тк его испльзуем в changeField.js
   hash: true
 });
@@ -1220,7 +1413,7 @@ var closeAllPage = function closeAllPage() {
 }; // роутинг: напишем обработчики котрые будут запускаться в зависимости от адресной строки
 
 
-router.on({
+router_router.on({
   '/': function _() {
     // если находимся на главнй странице
     closeAllPage();
@@ -1254,19 +1447,25 @@ router.on({
 }).resolve();
 addBtns.forEach(function (btn) {
   btn.addEventListener('click', function () {
-    router.navigate('add'); // переходим на cекцию add(форма)
+    router_router.navigate('add'); // переходим на cекцию add(форма)
   });
 });
 backBtns.forEach(function (backBtn) {
   // нажатие на кнопку Назад
   backBtn.addEventListener('click', function () {
-    router.navigate('/'); // переходим на главную страницу
+    router_router.navigate('/'); // переходим на главную страницу
   });
 });
 ;// CONCATENATED MODULE: ./src/js/modules/search.js
+
+
+
+
 var btnSearchs = document.querySelectorAll('.header__btn--search'); // кнпоки поиска в header
 
 var search_search = document.querySelector('.search'); // блок с поиском
+
+var searchForm = document.querySelector('.search__form'); // форма поиска
 // закрытие поля поиска:
 
 var closeSearch = function closeSearch(evt) {
@@ -1279,16 +1478,51 @@ var closeSearch = function closeSearch(evt) {
 
   search_search.classList.remove('search__active');
   document.body.removeEventListener('click', closeSearch); // удаляем событие 
+
+  renederList(data.books); //  возвращаем списко книг
 };
 
 btnSearchs.forEach(function (btnSearch) {
   btnSearch.addEventListener('click', function () {
+    // обработчик кнопки поиска
     search_search.classList.add('search__active');
     document.body.addEventListener('click', closeSearch, true); // скобки у closeSearch не нужвн. При клике на body, закрываем блок поиска(.search)
     // третий параметр true нужен чтобы при нажатии на карточку, поле поиска закрывалось и получали стрнаицу книги 
     // btnSearch.classList.add('hide');
   });
 });
+searchForm.addEventListener('submit', /*#__PURE__*/function () {
+  var _ref = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(evt) {
+    var books;
+    return regenerator.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            // поиск
+            evt.preventDefault(); // отменяем собвтие по умолчанию, те перезагрузка страницы
+
+            _context.next = 3;
+            return searchBooks(searchForm.input.value);
+
+          case 3:
+            books = _context.sent;
+            renederList(books);
+            evt.target.reset(); // очищаем поле поиска
+
+            closeSearch(evt.target);
+
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}());
 ;// CONCATENATED MODULE: ./src/js/modules/toBase64.js
 var toBase64 = function toBase64(file) {
   return new Promise(function (resolve, reject) {
@@ -1317,7 +1551,7 @@ var preview = document.querySelector('.upload__preview'); // <img>
 var file = document.querySelector('.upload__file'); // input type="file"
 
 var previewSrc = preview.src;
-file.addEventListener('change', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+file.addEventListener('change', /*#__PURE__*/asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
   var base64;
   return regenerator.wrap(function _callee$(_context) {
     while (1) {
@@ -1379,7 +1613,7 @@ var otherBackBtn = document.querySelector('.other-class'); // кнопка На�
 var count = 0;
 
 var sendBook = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+  var _ref = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
     var formData, data, book;
     return regenerator.wrap(function _callee$(_context) {
       while (1) {
@@ -1410,7 +1644,7 @@ var sendBook = /*#__PURE__*/function () {
 
               clearPreview(); // убираем картнки котрую выбрали
 
-              router.navigate('/'); //  переходим на главную страницу
+              router_router.navigate('/'); //  переходим на главную страницу
 
               count = 0;
               addBtn.textContent = 'Далее';
@@ -1490,7 +1724,7 @@ var initFieldSet = function initFieldSet() {
     // обработчик кнопки Назад в форме
     if (count === 0) {
       console.log('count=0, т.е. первая страница формы');
-      router.navigate('/');
+      router_router.navigate('/');
       changeField_form.reset();
       clearPreview(); // убираем картинку котрую грузили 
     }
@@ -1501,7 +1735,7 @@ var initFieldSet = function initFieldSet() {
       fileldsets[0].classList.remove('hide');
       fileldsets[1].classList.add('hide');
       fileldsets[2].classList.add('hide');
-      router.navigate('add');
+      router_router.navigate('add');
     }
 
     if (count === 2) {
@@ -1510,29 +1744,43 @@ var initFieldSet = function initFieldSet() {
       fileldsets[0].classList.add('hide');
       fileldsets[1].classList.remove('hide');
       fileldsets[2].classList.add('hide');
-      router.navigate('add');
+      router_router.navigate('add');
     }
   });
 };
 
 /* harmony default export */ const changeField = (initFieldSet()); //   экспорт функции  initFieldSet();
 ;// CONCATENATED MODULE: ./src/js/modules/controlField.js
+
 var controlField = function controlField(btn, list, offList) {
+  // кнопки фильтра  и сортjровки
   btn.addEventListener('click', function () {
     list.classList.toggle('fields__list--active');
     offList.classList.remove('fields__list--active');
   });
   list.addEventListener('click', function (_ref) {
     var target = _ref.target;
-    console.log('target', target);
 
+    //console.log('target', target); // выведет нажатый элемент
     if (target.classList.contains('fields__button')) {
-      // если на;атый элемент имеет класс fields__button 
+      // если нажатый элемент имеет класс fields__button 
       list.classList.remove('fields__list--active');
+    }
+
+    if (target.dataset.sort) {
+      data.sortBook(target.dataset.sort); // значение атрибута data-sort: target.dataset.sort
+
+      renederList();
+    }
+
+    if (target.dataset.filter) {
+      var mas = data.filterBook(target.dataset.filter); //  отфильрованный массив книг получим
+
+      renederList(mas);
     }
   });
 };
-/* harmony default export */ const modules_controlField = ((/* unused pure expression or super */ null && (controlField)));
+/* harmony default export */ const modules_controlField = ((/* unused pure expression or super */ null && (controlField))); //  экспорт функции controlField
 ;// CONCATENATED MODULE: ./src/js/index.js
  // импорт router.js
 

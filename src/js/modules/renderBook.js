@@ -1,12 +1,20 @@
-import { getBooks, getLabels, API_URI } from "./serverBook.js";
+import { getBooks, getLabels, API_URI, deleteBook } from "./serverBook.js";
 
 const container = document.querySelector('.book__container'); // <div class="book__container"> </div>
 const btnDelete = document.querySelector('.header__btn--delete'); // кнопка корзины
 const bookLabel = document.querySelector('.footer__btn.book__label'); // кнопка "Хочу прочитать" в футере
 
 
+// обработчик удаления книги
+btnDelete.addEventListener('click', async () => { // добавляем async потому что  запрос на серевер идет
+    await deleteBook(btnDelete.dataset.id);
+    router.navigate('/'); // преходим на главную страницу
+})
 
-const getStars = (raiting) => { // п
+
+
+// получение верстки со звездами
+const getStars = (raiting) => {
     const stars = []; // пустой массив, в цикле его будем заполнять
 
     for (let i = 0; i < 5; i++) {
@@ -28,9 +36,11 @@ const getStars = (raiting) => { // п
 
 
 
-export const renderBook = async (id) => {
-    const [books, labels] = await Promise.all([getBooks(id), getLabels()]); // books = [{},{},{},{}]
-    console.log(books);
+
+//  отображаем книгу
+export const renderBook = async (id) => { // добавляем   async потому что запрос на сервер идет
+    const [books, labels] = await Promise.all([getBooks(id), getLabels()]); // 
+    console.log('книга ', books);
     container.textContent = ''; //нач значение пусто. у  <div class="book__container"> </div>
 
     const { author, title, description, label, image, rating } = books; // деуструктуризация
@@ -58,7 +68,7 @@ export const renderBook = async (id) => {
             </div>
     `;
 
-    btnDelete.dataset.id = id; // кнопке удаления добавили дата-атрибут data-id = id
+    btnDelete.dataset.id = id; // кнопке удаления добавили дата-атрибут data-id = id(id книги)
     bookLabel.dataset.label = label;
     bookLabel.textContent = labels[label];
 

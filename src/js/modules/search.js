@@ -1,7 +1,11 @@
+import { searchBooks } from './serverBook.js';
+import { renederList, data } from './renderListBooks.js';
+
 
 
 const btnSearchs = document.querySelectorAll('.header__btn--search'); // кнпоки поиска в header
 const search = document.querySelector('.search'); // блок с поиском
+const searchForm = document.querySelector('.search__form'); // форма поиска
 
 
 // закрытие поля поиска:
@@ -13,7 +17,9 @@ const closeSearch = (evt) => { // нажатие на блок .search
 
     search.classList.remove('search__active');
 
+
     document.body.removeEventListener('click', closeSearch); // удаляем событие 
+    renederList(data.books); //  возвращаем списко книг
 
 };
 
@@ -21,11 +27,26 @@ const closeSearch = (evt) => { // нажатие на блок .search
 
 btnSearchs.forEach((btnSearch) => {
 
-    btnSearch.addEventListener('click', () => {
+    btnSearch.addEventListener('click', () => { // обработчик кнопки поиска
         search.classList.add('search__active');
         document.body.addEventListener('click', closeSearch, true); // скобки у closeSearch не нужвн. При клике на body, закрываем блок поиска(.search)
         // третий параметр true нужен чтобы при нажатии на карточку, поле поиска закрывалось и получали стрнаицу книги 
         // btnSearch.classList.add('hide');
 
     });
+});
+
+
+
+
+
+searchForm.addEventListener('submit', async (evt) => { // поиск
+    evt.preventDefault(); // отменяем собвтие по умолчанию, те перезагрузка страницы
+    const books = await searchBooks(searchForm.input.value);
+    renederList(books);
+    evt.target.reset(); // очищаем поле поиска
+
+    closeSearch(evt.target);
+
+
 });

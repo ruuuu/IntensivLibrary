@@ -509,24 +509,24 @@ template {
 }
 
 @font-face {
-  font-family: Montserrat;
+  font-family: montserrat;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/Montserrat - 400.woff2") format("woff2"), url("../fonts/Montserrat - 400.woff") format("woff");
+  src: url("../fonts/montserrat - 400.woff2") format("woff2"), url("../fonts/montserrat - 400.woff") format("woff");
 }
 
 @font-face {
-  font-family: Montserrat;
+  font-family: montserrat;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/Montserrat - 500.woff2") format("woff2"), url("../fonts/Montserrat - 500.woff") format("woff");
+  src: url("../fonts/montserrat - 500.woff2") format("woff2"), url("../fonts/montserrat - 500.woff") format("woff");
 }
 
 @font-face {
-  font-family: Montserrat;
+  font-family: montserrat;
   font-weight: 700;
   font-display: swap;
-  src: url("../fonts/Montserrat - 700.woff2") format("woff2"), url("../fonts/Montserrat - 700.woff") format("woff");
+  src: url("../fonts/montserrat - 700.woff2") format("woff2"), url("../fonts/montserrat - 700.woff") format("woff");
 }
 
 html {
@@ -1333,6 +1333,7 @@ fieldset {
 
   .cart {
     max-width: 377px;
+    width: 377px;
   }
 
   .book {

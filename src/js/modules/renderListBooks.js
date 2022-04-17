@@ -1,18 +1,28 @@
 import { getBooks, getLabels, API_URI } from "./serverBook.js";
 
-const libraryList = document.querySelector('.library__list'); // <ul class="library__list"> </ul>
-
 
 export const data = {
     books: [],
     labels: [],
     sortBook(sort) {
-        return this.books; // объкет
+        return this.books.sort((a, b) => { // отсортирует массив книг, a b - объект книги
+            if (sort === 'up') return a.rating > b.rating ? 1 : -1;
+            if (sort === 'down') return a.rating < b.rating ? 1 : -1;
+        });
+    },
+    filterBook(value) {
+        return this.books.filter(book => book.label === value) // к массиву применеям метод filter, book- текущая книга. Вернет отфильтрованный массив
     }
-
 };
 
-const getStars = (raiting) => { // 
+
+
+const libraryList = document.querySelector('.library__list'); // <ul class="library__list"> </ul>
+const fieldsList = document.querySelector('.fields__list-filter'); // фильтр  ul
+
+
+// получение вертски со звездами
+const getStars = (raiting) => {
     const stars = []; // пустой массив, в цикле его будем заполнять
 
     for (let i = 0; i < 5; i++) {
@@ -34,14 +44,14 @@ const getStars = (raiting) => { //
 
 
 
-export const renderListBooks = async () => {
-
-    const [books, labels] = await Promise.all([getBooks(), getLabels()]); // ждем кгда оба метода вернут данные(массив книг и массив лейблов)
-    libraryList.textContent = ''; // <ul class="list__library"> </ul>
+// выводим список книг
+export const renederList = (books = data.books) => { //если книжки не передали, то отображаем data.books(то что с сервера приходит)
+    libraryList.textContent = ''; // нач значение пусто,<ul class="list__library"> </ul>
 
     // деструктуризация:
-    books.forEach(({ author, description, id, image, label, rating, title }) => { // books = [{},{},{},{}]
+    const items = books.map(({ author, description, id, image, label, rating, title }) => { // перебираем книги
         const item = document.createElement('li'); // <li> </li>
+
         item.classList.add('list__item');
 
         item.innerHTML = `
@@ -49,7 +59,7 @@ export const renderListBooks = async () => {
             <article class="cart">
                 <div class="cart__wrapper">
                     <img class="cart__image" src="${API_URI + image}" alt="${title}">
-                    <p class="cart__label">${labels[label]}</p>
+                    <p class="cart__label">${data.labels[label]}</p>
                 </div>
 
                 <div class="cart__content">
@@ -64,9 +74,49 @@ export const renderListBooks = async () => {
         </a>
         `;
 
-        libraryList.append(item); // добавляем в ul li(item)
+        return item;
+    }); // map
 
-    });
+    libraryList.append(...items); // добавляем в ul все li(item) , ... спред-оператор котрый превратит в массив
+}
+
+
+
+const renderFields = (labels) => { // labels = {"wish": "хочу прочитать", "ready": "прочитал"}
+    fieldsList.textContent = ''; // <ul></ul>
+
+    for (const key in labels) {
+        // console.log(key);
+        // console.log(labels[key]);
+        const item = document.createElement('li');
+        item.classList.add('fields__item');
+
+        const button = document.createElement('button');
+        button.classList.add('fields__button');
+        button.dataset.filter = key; // добавили кнпоке дата-атрибут data-filter='wish'
+        button.textContent = labels[key];
+
+        item.append(button); // button добавляем в li
+        fieldsList.append(item); // li добавляем в  ul
+
+    }
+
+
+}
+
+
+
+export const renderListBooks = async () => {
+
+    const [books, labels] = await Promise.all([getBooks(), getLabels()]); // ждем кгда оба метода вернут данные(массив книг и массив лейблов)
+    //console.log('массив книг ', books); // books = [{},{},{},{}], labels = {"wish": "хочу прочитать", "ready": "прочитал"}
+
+    data.books = books;
+    data.labels = labels;
+
+    renederList(books);
+    renderFields(labels);
+
 };
 
 

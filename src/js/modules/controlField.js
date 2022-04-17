@@ -1,4 +1,9 @@
-export const controlField = (btn, list, offList) => {
+import { data, renederList } from './renderListBooks.js';
+
+
+
+export const controlField = (btn, list, offList) => { // кнопки фильтра  и сортjровки
+
 
     btn.addEventListener('click', () => {
         list.classList.toggle('fields__list--active');
@@ -7,11 +12,25 @@ export const controlField = (btn, list, offList) => {
 
 
     list.addEventListener('click', ({ target }) => {
-        console.log('target', target);
-        if (target.classList.contains('fields__button')) { // если на;атый элемент имеет класс fields__button 
+        //console.log('target', target); // выведет нажатый элемент
+
+        if (target.classList.contains('fields__button')) { // если нажатый элемент имеет класс fields__button 
             list.classList.remove('fields__list--active');
         }
+
+        if (target.dataset.sort) {
+            data.sortBook(target.dataset.sort); // значение атрибута data-sort: target.dataset.sort
+            renederList();
+
+        }
+        if (target.dataset.filter) {
+            const mas = data.filterBook(target.dataset.filter); //  отфильрованный массив книг получим
+            renederList(mas);
+        }
+
     });
 };
 
-export default controlField;
+
+
+export default controlField; //  экспорт функции controlField

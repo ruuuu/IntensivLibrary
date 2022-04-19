@@ -1,8 +1,10 @@
-import { getBooks, getLabels, API_URI, deleteBook } from "./serverBook.js";
+import { getBooks, getLabels, API_URI, deleteBook, updateBook } from "./serverBook.js";
 
 const container = document.querySelector('.book__container'); // <div class="book__container"> </div>
 const btnDelete = document.querySelector('.header__btn--delete'); // кнопка корзины
 const bookLabel = document.querySelector('.footer__btn.book__label'); // кнопка "Хочу прочитать" в футере
+const labelButton = document.querySelector('.book__label'); // кнопка лейбла на странице книги
+console.log('labelButton ', labelButton);
 
 
 // обработчик удаления книги
@@ -75,9 +77,14 @@ export const renderBook = async (id) => { // добавляем   async пото
 };
 
 
-// const labelButton = document.querySelector('.book__label.book__label-footer'); // кнопка на странице книги
-// labelButton.addEventListener('click', () => {
 
-// })
+
+labelButton.addEventListener('click', (evt) => {
+    console.log('нажали на ', evt.target)
+    const id = btnDelete.getAttribute('label');
+    console.log('id ', id);
+    updateBook(id, { label: "ready" });
+    renderBook(id);
+});
 
 

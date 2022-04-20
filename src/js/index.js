@@ -33,22 +33,6 @@ changeFieldset();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // [...fieldset.elements].forEach(elem => { //fieldset.elements -HTMLCollection(к нему нельяз применять forEach), поэтому применяем спред-оператор котрый превратит в массив
         //     console.log(elem);
         // })

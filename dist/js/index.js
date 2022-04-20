@@ -895,7 +895,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   }
 }
 
-function asyncToGenerator_asyncToGenerator(fn) {
+function _asyncToGenerator(fn) {
   return function () {
     var self = this,
         args = arguments;
@@ -943,7 +943,7 @@ var regenerator = __webpack_require__(757);
 var API_URI = 'http://localhost:3024/'; // когда загрузим на хероку, то этот адерс надр поменять
 
 var getBooks = /*#__PURE__*/function () {
-  var _ref = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(id) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(id) {
     var response;
     return regenerator.wrap(function _callee$(_context) {
       while (1) {
@@ -978,7 +978,7 @@ var getBooks = /*#__PURE__*/function () {
   };
 }();
 var searchBooks = /*#__PURE__*/function () {
-  var _ref2 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(search) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(search) {
     var response;
     return regenerator.wrap(function _callee2$(_context2) {
       while (1) {
@@ -1013,7 +1013,7 @@ var searchBooks = /*#__PURE__*/function () {
   };
 }();
 var addBooks = /*#__PURE__*/function () {
-  var _ref3 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee3(data) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee3(data) {
     var response;
     return regenerator.wrap(function _callee3$(_context3) {
       while (1) {
@@ -1052,7 +1052,7 @@ var addBooks = /*#__PURE__*/function () {
   };
 }();
 var getLabels = /*#__PURE__*/function () {
-  var _ref4 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee4() {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee4() {
     var response;
     return regenerator.wrap(function _callee4$(_context4) {
       while (1) {
@@ -1087,7 +1087,7 @@ var getLabels = /*#__PURE__*/function () {
   };
 }();
 var deleteBook = /*#__PURE__*/function () {
-  var _ref5 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee5(id) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee5(id) {
     var response;
     return regenerator.wrap(function _callee5$(_context5) {
       while (1) {
@@ -1123,10 +1123,10 @@ var deleteBook = /*#__PURE__*/function () {
     return _ref5.apply(this, arguments);
   };
 }();
-var updateBook = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee6(id, data) {
+var updateBook = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee6(id, data) {
     var response;
-    return _regeneratorRuntime.wrap(function _callee6$(_context6) {
+    return regenerator.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
@@ -1160,7 +1160,7 @@ var updateBook = /*#__PURE__*/(/* unused pure expression or super */ null && (fu
   return function updateBook(_x5, _x6) {
     return _ref6.apply(this, arguments);
   };
-}()));
+}();
 ;// CONCATENATED MODULE: ./src/js/modules/renderListBooks.js
 
 
@@ -1252,7 +1252,7 @@ var renderFields = function renderFields(labels) {
 };
 
 var renderListBooks = /*#__PURE__*/function () {
-  var _ref2 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
     var _yield$Promise$all, _yield$Promise$all2, books, labels;
 
     return regenerator.wrap(function _callee$(_context) {
@@ -1303,9 +1303,12 @@ var container = document.querySelector('.book__container'); // <div class="book_
 var btnDelete = document.querySelector('.header__btn--delete'); // кнопка корзины
 
 var bookLabel = document.querySelector('.footer__btn.book__label'); // кнопка "Хочу прочитать" в футере
-// обработчик удаления книги
 
-btnDelete.addEventListener('click', /*#__PURE__*/asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+var labelButton = document.querySelector('.book__label'); // кнопка лейбла на странице книги
+
+console.log('labelButton ', labelButton); // обработчик удаления книги
+
+btnDelete.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
   return regenerator.wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -1343,7 +1346,7 @@ var renderBook_getStars = function getStars(raiting) {
 
 
 var renderBook = /*#__PURE__*/function () {
-  var _ref2 = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(id) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(id) {
     var _yield$Promise$all, _yield$Promise$all2, books, labels, author, title, description, label, image, rating, btnLabel;
 
     return regenerator.wrap(function _callee2$(_context2) {
@@ -1386,9 +1389,16 @@ var renderBook = /*#__PURE__*/function () {
   return function renderBook(_x) {
     return _ref2.apply(this, arguments);
   };
-}(); // const labelButton = document.querySelector('.book__label.book__label-footer'); // кнопка на странице книги
-// labelButton.addEventListener('click', () => {
-// })
+}();
+labelButton.addEventListener('click', function (evt) {
+  console.log('нажали на ', evt.target);
+  var id = btnDelete.getAttribute('label');
+  console.log('id ', id);
+  updateBook(id, {
+    label: "ready"
+  });
+  renderBook(id);
+});
 ;// CONCATENATED MODULE: ./src/js/modules/router.js
 
 
@@ -1504,7 +1514,7 @@ btnSearchs.forEach(function (btnSearch) {
 }); // поиск
 
 searchForm.addEventListener('submit', /*#__PURE__*/function () {
-  var _ref = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(evt) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(evt) {
     var books;
     return regenerator.wrap(function _callee$(_context) {
       while (1) {
@@ -1563,7 +1573,7 @@ var preview = document.querySelector('.upload__preview'); // <img>
 var file = document.querySelector('.upload__file'); // input type="file"
 
 var previewSrc = preview.src;
-file.addEventListener('change', /*#__PURE__*/asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+file.addEventListener('change', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
   var base64;
   return regenerator.wrap(function _callee$(_context) {
     while (1) {
@@ -1625,7 +1635,7 @@ var otherBackBtn = document.querySelector('.other-class'); // кнопка На�
 var count = 0;
 
 var sendBook = /*#__PURE__*/function () {
-  var _ref = asyncToGenerator_asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
     var formData, data, book;
     return regenerator.wrap(function _callee$(_context) {
       while (1) {

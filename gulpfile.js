@@ -53,10 +53,11 @@ const path = { // пути до файлов
     },
     dist: {
         base: 'dist/',
-        html: 'dist/',
+        html: 'dist/*.html',
         css: 'dist/css/',
         js: 'dist/js/',
         img: 'dist/img/',
+        cssIndex: 'dist/css/index.min.css'
 
     },
     watch: {
@@ -76,7 +77,7 @@ export const html = () => gulp // task html
         removeComments: true,
         collapseWhitespace: true,
     })))
-    .pipe(gulp.dest(path.dist.html)) //html  файлы кладет в паку dist методом dest
+    .pipe(gulp.dest(path.dist.base)) //html  файлы кладет в паку dist методом dest
     .pipe(browserSync.stream()); //  изменять без  преезагрузки страницы
 
 
@@ -99,6 +100,18 @@ export const scss = () => gulp // task scss
     .pipe(gulpif(dev, sourcemaps.write()))
     .pipe(gulp.dest(path.dist.css))
     .pipe(browserSync.stream());
+
+
+export const critCSS = () => gulp // критически стили, нужны чтоб ускортяь загрузку
+    .src(path.dist.html)
+    .pipe(critical({
+        base: path.dist.base, // в эту папку кладем
+        inline: true,
+        css: [path.dist.cssIndex],
+    }))
+    .on('error', err => console.log(err))
+    .pipe(gulp.dest(path.dist.base)); //  положили в path.dist.base(/dist)
+
 
 
 const configWebpack = {
@@ -231,6 +244,6 @@ const develop = (ready) => {
 const base = gulp.parallel(html, scss, js, image, avif, webp, copy); // таски запускаются параллельно
 
 
-export const build = gulp.series(clear, base); // для прода, спрва вызовется таска html, потом base
+export const build = gulp.series(clear, base, critCSS); // для прода, спрва вызовется таска html, потом base
 
 export default gulp.series(develop, base, server); // сперва вызовется таски develop, потом base,  потм server

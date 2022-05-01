@@ -1,15 +1,17 @@
 import { getBooks, getLabels, API_URI } from "./serverBook.js";
 
 
-export const data = {
+export const data = { // создаем объект
     books: [],
     labels: [],
-    sortBook(sort) {
-        return this.books.sort((a, b) => { //сортирует books b и возвращет отсортированный массив книг, a={книга} и b={книга}
-            if (sort === 'up') return a.rating > b.rating ? 1 : -1;
-            if (sort === 'down') return a.rating < b.rating ? 1 : -1;
+
+    sortBook(sort) { // сорировка книг по их ретйингу
+        return this.books.sort((a, b) => { // сортирует books, a и b - объекты  и возвращет отсортированный массив книг, a={книга} и b={книга}
+            if (sort === 'up') return a.rating < b.rating ? 1 : -1;
+            if (sort === 'down') return a.rating > b.rating ? 1 : -1;
         });
     },
+
     filterBook(value) {
         return this.books.filter(book => book.label === value) // к массиву применеям метод filter, book- текущая книга. Вернет отфильтрованный массив
     }
@@ -46,7 +48,7 @@ const getStars = (raiting) => {
 
 // выводим список книг
 export const renederList = (books = data.books) => { //если книжки не передали, то отображаем data.books(то что с сервера приходит)
-    libraryList.textContent = ''; // нач значение пусто,<ul class="list__library"> </ul>
+    libraryList.textContent = ''; // нач значение пусто, <ul class="list__library"> </ul>
 
     // деструктуризация:
     const items = books.map(({ author, description, id, image, label, rating, title }) => { // перебираем книги
@@ -77,7 +79,7 @@ export const renederList = (books = data.books) => { //если книжки н�
         return item;
     }); // map
 
-    libraryList.append(...items); // добавляем в ul все li(item) , ... спред-оператор котрый превратит в массив
+    libraryList.append(...items); // добавляем в ul все li(item) , ... спред-оператор котрый превратит items  в массив
 }
 
 

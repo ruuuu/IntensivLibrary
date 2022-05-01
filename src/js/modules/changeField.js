@@ -12,17 +12,17 @@ let count = 0;
 
 
 
-
+// Зваполнение формы книги (при нажатии на "Добавить книгу")
 const sendBook = async () => {
     const formData = new FormData(form);  //полуим  колеккцию котрую можн вытащить из любой формы,  у полей формы долен быть name
     const data = Object.fromEntries(formData); // name у полей станут свойствами объекта, а value у полей станут значениям свойств
     console.log(data);// объект(джсон) котрый отправляем на сервер
 
-    data.image = await toBase64(data.image); // ждем когда операция выпонлится
+    data.image = await toBase64(data.image); // ждем когда операция выпонлится(поэтоу await ставим)
     console.log(data);
 
 
-    const book = await addBooks(data); // отпарвка данных на сервер
+    const book = await addBooks(data); // отпарвка данных на сервер(поэтому await ставим )
     if (data) {
         form.reset(); // очищаем форму
         clearPreview(); // убираем картнки котрую выбрали

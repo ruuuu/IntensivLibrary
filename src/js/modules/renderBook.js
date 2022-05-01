@@ -4,7 +4,7 @@ const container = document.querySelector('.book__container'); // <div class="boo
 const btnDelete = document.querySelector('.header__btn--delete'); // кнопка корзины
 const bookLabel = document.querySelector('.footer__btn.book__label'); // кнопка "Хочу прочитать" в футере
 const labelButton = document.querySelector('.book__label'); // кнопка лейбла на странице книги
-console.log('labelButton ', labelButton);
+
 
 
 // обработчик удаления книги
@@ -32,24 +32,26 @@ const getStars = (raiting) => {
         }
     }
 
-    return stars;
+    return stars; // возвращаем маcсив [<img>, <img>, <img>]
 };
 
 
 
 
 
-//  отображаем книгу
+//  отображаем книгу(когда переходим на страицу  с книгой )
 export const renderBook = async (id) => { // добавляем   async потому что запрос на сервер идет
-    const [books, labels] = await Promise.all([getBooks(id), getLabels()]); // 
-    console.log('книга ', books);
-    container.textContent = ''; //нач значение пусто. у  <div class="book__container"> </div>
+    const [book, labels] = await Promise.all([getBooks(id), getLabels()]); // получаем  книгу и объект с лейблами
+    console.log('книга ', book);
+    container.textContent = ''; // нач значение пусто. у  <div class="book__container"> </div>
 
-    const { author, title, description, label, image, rating } = books; // деуструктуризация
-    const btnLabel = document.createElement('button');
-    btnLabel.className = 'book__label book__label--img';
+    const { author, title, description, label, image, rating } = book; // деструктуризация, одна книга
+    //console.log(`book: ${book}`);
+
+    const btnLabel = document.createElement('button'); // создаем кнопку <button> </button>
+    btnLabel.className = 'book__label book__label--img'; // добавляем ей классы
     btnLabel.textContent = labels[label];
-    btnLabel.dataset.label = label; // btnLabel устанавливаем дата атрибут data-label=label
+    btnLabel.dataset.label = label; // btnLabel устанавливаем дата-атрибут data-label=label
 
     container.innerHTML = `
             <div class="book__wrapper">
@@ -60,18 +62,19 @@ export const renderBook = async (id) => { // добавляем   async пото
             <div class="book__content">
                 <h2 class="book__title">${title}</h2>
                 <p class="book__author">${author}</p>
+
                 <div class="book__rating">
                     ${getStars(rating).join('')}
                 </div>
 
                 <h3 class="book__subtitle">Описание</h3>
-
                 <p class="book__description">${description}</p>
             </div>
     `;
+    // getStars(rating).join('') - соединеям звездочки  пробелами
 
-    btnDelete.dataset.id = id; // кнопке удаления добавили дата-атрибут data-id = id(id книги)
-    bookLabel.dataset.label = label;
+    btnDelete.dataset.id = id; // кнопке удаления(корзина) добавили дата-атрибут data-id = id(id книги)
+    bookLabel.dataset.label = label; // data-label = label
     bookLabel.textContent = labels[label];
 
 };
@@ -79,9 +82,9 @@ export const renderBook = async (id) => { // добавляем   async пото
 
 
 
-labelButton.addEventListener('click', (evt) => {
+labelButton.addEventListener('click', (evt) => { // нажатиена  кнопку лейбла на странице книги
     console.log('нажали на ', evt.target)
-    const id = btnDelete.getAttribute('label');
+    const id = btnDelete.getAttribute('label'); // получаем значение атрибута label у кнопки Корзины
     console.log('id ', id);
     updateBook(id, { label: "ready" });
     renderBook(id);

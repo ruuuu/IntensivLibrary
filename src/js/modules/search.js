@@ -11,7 +11,7 @@ const searchForm = document.querySelector('.search__form'); // форма пои
 
 // закрытие поля поиска:
 const closeSearch = (evt) => { // нажатие на блок .search
-    // evt - объект событи, создается при наустпулении события. evt.target-  элемент на котором произошел клик
+    // evt - объект события, создается при наступлении события. evt.target-  элемент на котором произошел клик
     if (evt.target.closest('.search, .header__btn--search')) { // если у target(нажатый эл-ент) или его родителя есть классы .search или .header__btn--search
         return; // блок .search закрываться  не будет
     }
@@ -21,7 +21,7 @@ const closeSearch = (evt) => { // нажатие на блок .search
     document.body.removeEventListener('click', closeSearch); // удаляем событие 
 
     renederList(data.books); //  возвращаем списко книг
-    countBooks(data.books);
+    countBooks(data.books); // в лейле отображаем сколько книг
 };
 
 
@@ -42,13 +42,13 @@ btnSearchs.forEach((btnSearch) => {
 
 // поиск
 searchForm.addEventListener('submit', async (evt) => {
-    evt.preventDefault(); // отменяем собвтие по умолчанию, те перезагрузка страницы
+
+    evt.preventDefault(); // отменяем событие по умолчанию, т.е. перезагрузка страницы
     const books = await searchBooks(searchForm.input.value);
     renederList(books);
-    countBooks(books);
+    countBooks(books); // отображаем в  лейбле число книг
     evt.target.reset(); // очищаем поле поиска
 
-    closeSearch(evt.target);
-
+    closeSearch(evt.target); // закрываем поле поиска
 
 });

@@ -21,7 +21,7 @@ const closeSearch = (evt) => { // нажатие на блок .search
     document.body.removeEventListener('click', closeSearch); // удаляем событие 
 
     renederList(data.books); //  возвращаем списко книг
-    countBooks(data.books); // в лейле отображаем сколько книг
+    countBooks(data.books); // в лейбле отображаем сколько книг
 };
 
 
@@ -30,7 +30,7 @@ btnSearchs.forEach((btnSearch) => {
 
     btnSearch.addEventListener('click', () => { // обработчик кнопки поиска
         search.classList.add('search__active');
-        document.body.addEventListener('click', closeSearch, true); // скобки у closeSearch не нужвн. При клике на body, закрываем блок поиска(.search)
+        document.body.addEventListener('click', closeSearch, true); // скобки у closeSearch не нужны, т.к. это коллбэк функция. При клике на body, закрываем блок поиска(.search)
         // третий параметр true нужен чтобы при нажатии на карточку, поле поиска закрывалось и получали стрнаицу книги 
         // btnSearch.classList.add('hide');
 
